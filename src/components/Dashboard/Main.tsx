@@ -14,6 +14,11 @@ import Areas from "./areas/Main";
 import Price from "./price/Main";
 import PieCharts from "./pie/Main";
 import Transactions from "./transaction-table/Main";
+import FirstGraph from "./graphs/first/Main";
+import SecondGraph from "./graphs/second/Main";
+import ThirdGraph from "./graphs/third/Main";
+import UnitSoldInMonth from "./graphs/unitSoldInMonth/Main";
+import UnitSoldInProject from "./graphs/unitSoldInproject/Main";
 
 export default function Dashboard() {
     const { setSelectedAreas, setSelectedDistrictsNames, setSelectedMonths, setSelectedStreetNames, setSelectedprojects } = useContext(MyContext)
@@ -51,7 +56,7 @@ export default function Dashboard() {
                     <Months />
                 </div>
             </section>
-            <section className="flex w-full mt-5 h-96">
+            <section className="flex w-full mt-5">
                 <div className="h-28 me-5">
                     <h2 className="text-center">Tenure</h2>
                     <div className="w-full border border-slate-300 overflow-x-auto overflow-y-hidden">
@@ -89,16 +94,35 @@ export default function Dashboard() {
                     </div>
                 </div>
             </section>
-            <section className="w-100 h-96 flex">
+            <section className="w-100 h-96 flex mt-5">
                 <div className="w-1/3">
-                   <PieCharts />
+                    <PieCharts />
                 </div>
                 <div className="">
+                    <h2 className="text-center">Transaction Record</h2>
+                    <Transactions />
                 </div>
 
             </section>
-            <section className="mt-5">
-                <Transactions />
+            <section className="flex mt-5 h-96 w-full gap-2">
+                <div className="h-full w-1/3 border">
+                    <FirstGraph />
+                </div>
+                <div className="h-full w-1/3 border">
+                    <SecondGraph />
+                </div>
+                <div className="h-full w-1/3 border">
+                    <ThirdGraph />
+                </div>
+
+            </section>
+            <section className="mt-5 h-96 w-full">
+                <h2>No. of Units Sold By Month</h2>
+                <UnitSoldInMonth />
+            </section>
+            <section className="mt-5 h-96 w-full">
+                <h2>No. of Units Sold By Project</h2>
+                <UnitSoldInProject />
             </section>
         </section>
     )

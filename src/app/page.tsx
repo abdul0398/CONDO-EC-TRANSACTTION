@@ -4,7 +4,7 @@ import Dashboard from "../components/Dashboard/Main";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { MyContext } from "@/context/context";
 import { districtArray, streetArray, projectArray, monthArray, tenureArray } from "@/constants";
-import { transactions as alltransactions } from "@/data/transactions";
+import  transaction from "@/data/transactions.json";
 import { Transaction } from "@/types/data";
 export default function Home() {
 
@@ -15,7 +15,7 @@ export default function Home() {
   const [projects, setprojects] = useState<string[]>(projectArray);
   const [months, setMonths] = useState<string[]>(monthArray);
   const [tenure, setTenure] = useState<string[]>(tenureArray);
-  const [transactions, setTransactions] = useState<Transaction[]>(alltransactions);
+  const [transactions, setTransactions] = useState<Transaction[]>(transaction as Transaction[]);
   const [selectedDistrictNames, setSelectedDistrictsNames] = useState<string[]>([]);
   const [selectedStreetNames, setSelectedStreetNames] = useState<string[]>([]);
   const [selectedprojects, setSelectedprojects] = useState<string[]>([]);

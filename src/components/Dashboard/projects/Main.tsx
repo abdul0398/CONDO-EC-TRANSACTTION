@@ -29,22 +29,7 @@ export default function Projects() {
     projects,
     selectedprojects,
     setSelectedprojects,
-    // selectedAreas,
-    // selectedDistrictNames,
-    // selectedFlatType,
-    // selectedMonths,
-    // selectedProjectType,
-    // selectedStreetNames,
-    // setStreets,
-    // setdistricts,
-    // setIsLoading,
-    // setAreas,
-    // setFlatTypes,
-    // setProperties,
-    // setTransactions,
-    // setMonths,
-    // setGraphCalculation,
-    // isLoading
+   
   } = useContext(MyContext);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -66,78 +51,6 @@ export default function Projects() {
       setSelectedprojects((prev) => prev.filter((name) => name !== name));
     }
   };
-
-  // useEffect(() => {
-  //   // Set isReady to true after the initial render
-  //   setIsReady(true);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!isReady) return;
-  //   setLocalLoading(false);
-  //   setIsLoading(true)
-  //   async function processData() {
-  //     const preData = {
-  //       selectedDistrictNames,
-  //       selectedStreetNames,
-  //       selectedprojects,
-  //       selectedFlatType,
-  //       selectedMonths,
-  //       selectedProjectType,
-  //       selectedAreas,
-  //     };
-
-  //     if(selectedDistrictNames.length === 0 && 
-  //       selectedStreetNames.length === 0 &&
-  //       selectedprojects.length === 0 &&
-  //       selectedFlatType === "" &&
-  //       selectedMonths.length === 0 &&
-  //       selectedProjectType === "" &&
-  //       selectedAreas.length === 0){
-  //         setStreets(allStreets);
-  //         setMonths(allMonths);
-  //         setdistricts(allDistricts);
-  //         setAreas(allAreas);
-  //         setProperties(allPropertyTypes);
-  //         setFlatTypes(allBedrooms);
-  //         setTransactions(array);
-  //         setGraphCalculation(allGraphData)
-
-
-  //         setLocalLoading(true);
-  //         setIsLoading(false);
-          
-  //       }else{
-  //     const res = await fetch("/api/processData", {
-  //       method: "POST",
-  //       body: JSON.stringify(preData),
-  //     });
-  //     const data: any = await res.json();
-  //     setdistricts(data.districts);
-  //     setStreets(data.streets);
-  //     setMonths(data.months);
-  //     setProperties(data.projectTypes);
-  //     setFlatTypes(data.flatTypes);
-  //     setTransactions(data.rentalData);
-  //     setAreas(data.areas);
-  //     setGraphCalculation(data.graphCalculation)
-      
-  //     setLocalLoading(true);
-  //     setIsLoading(false);
-  //   }
-  // }
-  //   processData();
-  // }, [selectedprojects]);
-
-
-  // if (isLoading  && localLoading) {
-  //   return (
-  //     <div className="h-full w-full flex items-center justify-center bg-white">
-  //       <p className="text-lg">Loading...</p>
-  //     </div>
-  //   );
-  // }
-
 
   return (
 

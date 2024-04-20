@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Condo Rental Analytics"
+  title: "Condo & EC Transactions"
 };
 
 export default function RootLayout({

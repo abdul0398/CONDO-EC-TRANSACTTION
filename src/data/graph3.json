@@ -1,0 +1,246 @@
+{
+  "2019-04": {
+    "Freehold": 1789,
+    "Leasehold": 1440
+  },
+  "2019-05": {
+    "Freehold": 1787,
+    "Leasehold": 1412
+  },
+  "2019-06": {
+    "Freehold": 1832,
+    "Leasehold": 1378
+  },
+  "2019-07": {
+    "Freehold": 1735,
+    "Leasehold": 1443
+  },
+  "2019-08": {
+    "Freehold": 1765,
+    "Leasehold": 1466
+  },
+  "2019-09": {
+    "Freehold": 1688,
+    "Leasehold": 1549
+  },
+  "2019-10": {
+    "Freehold": 1829,
+    "Leasehold": 1442
+  },
+  "2019-11": {
+    "Freehold": 1684,
+    "Leasehold": 1569
+  },
+  "2019-12": {
+    "Freehold": 1632,
+    "Leasehold": 1498
+  },
+  "2020-01": {
+    "Freehold": 1885,
+    "Leasehold": 1421
+  },
+  "2020-02": {
+    "Freehold": 1699,
+    "Leasehold": 1585
+  },
+  "2020-03": {
+    "Freehold": 1555,
+    "Leasehold": 1370
+  },
+  "2020-04": {
+    "Freehold": 1516,
+    "Leasehold": 1431
+  },
+  "2020-05": {
+    "Freehold": 1563,
+    "Leasehold": 1545
+  },
+  "2020-06": {
+    "Freehold": 1745,
+    "Leasehold": 1576
+  },
+  "2020-07": {
+    "Freehold": 1575,
+    "Leasehold": 1436
+  },
+  "2020-08": {
+    "Freehold": 1654,
+    "Leasehold": 1415
+  },
+  "2020-09": {
+    "Freehold": 1573,
+    "Leasehold": 1429
+  },
+  "2020-10": {
+    "Freehold": 1567,
+    "Leasehold": 1344
+  },
+  "2020-11": {
+    "Freehold": 1720,
+    "Leasehold": 1366
+  },
+  "2020-12": {
+    "Freehold": 1589,
+    "Leasehold": 1415
+  },
+  "2021-01": {
+    "Freehold": 1659,
+    "Leasehold": 1509
+  },
+  "2021-02": {
+    "Freehold": 1640,
+    "Leasehold": 1401
+  },
+  "2021-03": {
+    "Freehold": 1750,
+    "Leasehold": 1601
+  },
+  "2021-04": {
+    "Freehold": 1707,
+    "Leasehold": 1568
+  },
+  "2021-05": {
+    "Freehold": 1720,
+    "Leasehold": 1404
+  },
+  "2021-06": {
+    "Freehold": 1828,
+    "Leasehold": 1409
+  },
+  "2021-07": {
+    "Freehold": 1747,
+    "Leasehold": 1473
+  },
+  "2021-08": {
+    "Freehold": 1765,
+    "Leasehold": 1439
+  },
+  "2021-09": {
+    "Freehold": 1767,
+    "Leasehold": 1411
+  },
+  "2021-10": {
+    "Freehold": 1923,
+    "Leasehold": 1437
+  },
+  "2021-11": {
+    "Freehold": 1867,
+    "Leasehold": 1808
+  },
+  "2021-12": {
+    "Freehold": 1831,
+    "Leasehold": 1458
+  },
+  "2022-01": {
+    "Freehold": 1768,
+    "Leasehold": 1489
+  },
+  "2022-02": {
+    "Freehold": 1929,
+    "Leasehold": 1504
+  },
+  "2022-03": {
+    "Freehold": 1923,
+    "Leasehold": 1491
+  },
+  "2022-04": {
+    "Freehold": 1911,
+    "Leasehold": 1509
+  },
+  "2022-05": {
+    "Freehold": 1978,
+    "Leasehold": 1750
+  },
+  "2022-06": {
+    "Freehold": 1945,
+    "Leasehold": 1560
+  },
+  "2022-07": {
+    "Freehold": 2000,
+    "Leasehold": 1688
+  },
+  "2022-08": {
+    "Freehold": 2065,
+    "Leasehold": 1568
+  },
+  "2022-09": {
+    "Freehold": 2020,
+    "Leasehold": 1736
+  },
+  "2022-10": {
+    "Freehold": 2036,
+    "Leasehold": 1467
+  },
+  "2022-11": {
+    "Freehold": 2051,
+    "Leasehold": 1562
+  },
+  "2022-12": {
+    "Freehold": 1995,
+    "Leasehold": 1491
+  },
+  "2023-01": {
+    "Freehold": 2178,
+    "Leasehold": 1680
+  },
+  "2023-02": {
+    "Freehold": 2260,
+    "Leasehold": 1650
+  },
+  "2023-03": {
+    "Freehold": 2078,
+    "Leasehold": 1669
+  },
+  "2023-04": {
+    "Freehold": 2166,
+    "Leasehold": 1904
+  },
+  "2023-05": {
+    "Freehold": 2249,
+    "Leasehold": 1855
+  },
+  "2023-06": {
+    "Freehold": 2016,
+    "Leasehold": 1640
+  },
+  "2023-07": {
+    "Freehold": 2003,
+    "Leasehold": 1983
+  },
+  "2023-08": {
+    "Freehold": 2000,
+    "Leasehold": 1660
+  },
+  "2023-09": {
+    "Freehold": 2047,
+    "Leasehold": 1607
+  },
+  "2023-10": {
+    "Freehold": 1947,
+    "Leasehold": 1644
+  },
+  "2023-11": {
+    "Freehold": 2227,
+    "Leasehold": 1887
+  },
+  "2023-12": {
+    "Freehold": 1949,
+    "Leasehold": 1642
+  },
+  "2024-01": {
+    "Freehold": 1991,
+    "Leasehold": 1647
+  },
+  "2024-02": {
+    "Freehold": 1985,
+    "Leasehold": 1687
+  },
+  "2024-03": {
+    "Freehold": 2004,
+    "Leasehold": 1896
+  },
+  "2024-04": {
+    "Freehold": 1995,
+    "Leasehold": 1842
+  }
+}

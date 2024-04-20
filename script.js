@@ -1,46 +1,61 @@
-const fs = require('fs').promises;
-const data = require('./data.json');
+const fs = require("fs").promises;
+const data = require("./data.json");
 async function saveData() {
+  const array = [...data[0], ...data[1], ...data[2], ...data[3]];
+  const result = [];
+  const totalUnitsPerProject = {};
 
-    const array = [...data[0], ...data[1], ...data[2], ...data[3]];
-    const result = [];
-    let totalUnits = 0;
-    array.forEach((item) => {
-        const project = item.project;
-        const street = item.street;
-        const marketSegment = item.marketSegment;
-        const x = item.x;
-        const y = item.y;
-        const transaction = item.transaction.map((t) => {
-            return {
-                area: t.area,
-                floorRange: t.floorRange,
-                noOfUnits: t.noOfUnits,
-                contractDate: t.contractDate,
-                typeOfSale: t.typeOfSale,
-                price: t.price,
-                propertyType: t.propertyType,
-                district: t.district,
-                typeOfArea: t.typeOfArea,
-                tenure: t.tenure,
-                project:project,
-                street:street,
-                marketSegment:marketSegment,
-                x:x,
-                y:y,
-            }
-        });
-        
-        result.push(...transaction);
+  array.forEach((item) => {
+    const project = item.project;
+    const street = item.street;
+    const marketSegment = item.marketSegment;
+    const x = item.x;
+    const y = item.y;
+    const transaction = item.transaction.map((t) => {
+      return {
+        area: Math.floor(t.area * 10.764),
+        floorRange: t.floorRange,
+        noOfUnits: parseInt(t.noOfUnits),
+        contractDate: `20${t.contractDate.slice(2)}-${t.contractDate.slice(0, 2)}`,
+        typeOfSale: t.typeOfSale,
+        price: t.price,
+        propertyType: t.propertyType,
+        district: t.district,
+        typeOfArea: t.typeOfArea,
+        tenure: t.tenure,
+        project: project,
+        street: street,
+        marketSegment: marketSegment,
+        x: x,
+        y: y,
+      };
+    });
+
+    result.push(...transaction);
+  });
+
+  result.forEach((item) => {
+    const month = item.contractDate;
+    if (!totalUnitsPerProject[month]) {
+      totalUnitsPerProject[month] = 0;
+    }
+    totalUnitsPerProject[month] += item.noOfUnits;
+  });
+
+  // sort the totalUnitsPerProject object by keys
+  const sortedTotalUnitsPerProject = Object.keys(totalUnitsPerProject)
+    .sort()
+    .reduce((acc, key) => {
+      acc[key] = totalUnitsPerProject[key];
+      return acc;
+    }, {});
 
 
-    })
-
-    // create a ts file 
-    const content = `export const transactions : Transaction[] = ${JSON.stringify(result)}`;
-    await fs.writeFile('./src/transactions.ts', content);
-
+  await fs.writeFile("monthsUnitsSold.json", JSON.stringify(sortedTotalUnitsPerProject, null, 2));
 }
+
+// Call the function and process the result as needed
+saveData()
 
 saveData();
 // {

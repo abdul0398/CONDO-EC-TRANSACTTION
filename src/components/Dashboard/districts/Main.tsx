@@ -68,69 +68,6 @@ export default function Districts() {
     }
     setIsLoading(true);
   };
-  // const [isReady, setIsReady] = useState(false);
-
-  // useEffect(() => {
-  //   // Set isReady to true after the initial render
-  //   setIsReady(true);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!isReady) return;
-  //   setLocalLoading(false)
-  //   setIsLoading(true);
-  //   async function processData() {
-  //       const preData = {
-  //           selectedDistrictNames,
-  //           selectedStreetNames,
-  //           selectedprojects,
-  //           selectedMonths,
-  //           selectedAreas,
-  //       }
-
-  //       if(selectedDistrictNames.length === 0 && 
-  //         selectedStreetNames.length === 0 &&
-  //         selectedprojects.length === 0 &&
-  //         selectedMonths.length === 0 &&
-  //         selectedAreas.length === 0){
-  //           setprojects(allProjects);
-  //           setStreets(allStreets);
-  //           setMonths(allMonths);
-
-            
-  //           setLocalLoading(true);
-  //           setIsLoading(false);
-            
-  //         }else{
-            
-  //           const res = await fetch("/api/processData", {
-  //             method: "POST",
-  //             body: JSON.stringify(preData),
-  //           });
-  //           const data :ResponseBody = await res.json();
-  //           setprojects(data.projects);
-  //           setStreets(data.streets);
-  //           setMonths(data.months);
-  //           setFlatTypes(data.flatTypes);
-  //           setProperties(data.projectTypes);
-  //           setAreas(data.areas);
-  //           setTransactions(data.rentalData);
-  //           setGraphCalculation(data.graphCalculation);
-  //           setLocalLoading(true);
-  //           setIsLoading(false);
-  //       }
-  //   }
-  //   processData();
-  // }, [selectedDistrictNames]);
-
-
-  // if (isLoading && localLoading) {
-  //   return (
-  //     <div className="h-full w-full flex items-center justify-center bg-white">
-  //       <p className="text-lg">Loading...</p>
-  //     </div>
-  //   );
-  // }
   return (
     <section className="overflow-hidden">
       <div className="h-full bg-white overflow-auto min-w-[150px]">

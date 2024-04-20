@@ -1,0 +1,307 @@
+{
+  "2019-04": {
+    "medianPricePerSqft": 1438,
+    "minPricePerSqft": 452,
+    "maxPricePerSqft": 4899
+  },
+  "2019-05": {
+    "medianPricePerSqft": 1481,
+    "minPricePerSqft": 244,
+    "maxPricePerSqft": 4936
+  },
+  "2019-06": {
+    "medianPricePerSqft": 1419,
+    "minPricePerSqft": 416,
+    "maxPricePerSqft": 5124
+  },
+  "2019-07": {
+    "medianPricePerSqft": 1372,
+    "minPricePerSqft": 99,
+    "maxPricePerSqft": 4687
+  },
+  "2019-08": {
+    "medianPricePerSqft": 1549,
+    "minPricePerSqft": 189,
+    "maxPricePerSqft": 4169
+  },
+  "2019-09": {
+    "medianPricePerSqft": 1579,
+    "minPricePerSqft": 453,
+    "maxPricePerSqft": 4702
+  },
+  "2019-10": {
+    "medianPricePerSqft": 1468,
+    "minPricePerSqft": 336,
+    "maxPricePerSqft": 4677
+  },
+  "2019-11": {
+    "medianPricePerSqft": 1593,
+    "minPricePerSqft": 413,
+    "maxPricePerSqft": 4200
+  },
+  "2019-12": {
+    "medianPricePerSqft": 1472,
+    "minPricePerSqft": 140,
+    "maxPricePerSqft": 3887
+  },
+  "2020-01": {
+    "medianPricePerSqft": 1486,
+    "minPricePerSqft": 164,
+    "maxPricePerSqft": 4987
+  },
+  "2020-02": {
+    "medianPricePerSqft": 1479,
+    "minPricePerSqft": 432,
+    "maxPricePerSqft": 4265
+  },
+  "2020-03": {
+    "medianPricePerSqft": 1365,
+    "minPricePerSqft": 381,
+    "maxPricePerSqft": 3744
+  },
+  "2020-04": {
+    "medianPricePerSqft": 1349,
+    "minPricePerSqft": 371,
+    "maxPricePerSqft": 3714
+  },
+  "2020-05": {
+    "medianPricePerSqft": 1563,
+    "minPricePerSqft": 424,
+    "maxPricePerSqft": 3618
+  },
+  "2020-06": {
+    "medianPricePerSqft": 1595,
+    "minPricePerSqft": 491,
+    "maxPricePerSqft": 3680
+  },
+  "2020-07": {
+    "medianPricePerSqft": 1458,
+    "minPricePerSqft": 314,
+    "maxPricePerSqft": 4375
+  },
+  "2020-08": {
+    "medianPricePerSqft": 1500,
+    "minPricePerSqft": 155,
+    "maxPricePerSqft": 4350
+  },
+  "2020-09": {
+    "medianPricePerSqft": 1488,
+    "minPricePerSqft": 432,
+    "maxPricePerSqft": 4250
+  },
+  "2020-10": {
+    "medianPricePerSqft": 1366,
+    "minPricePerSqft": 212,
+    "maxPricePerSqft": 4685
+  },
+  "2020-11": {
+    "medianPricePerSqft": 1429,
+    "minPricePerSqft": 119,
+    "maxPricePerSqft": 4306
+  },
+  "2020-12": {
+    "medianPricePerSqft": 1520,
+    "minPricePerSqft": 144,
+    "maxPricePerSqft": 3935
+  },
+  "2021-01": {
+    "medianPricePerSqft": 1555,
+    "minPricePerSqft": 247,
+    "maxPricePerSqft": 5899
+  },
+  "2021-02": {
+    "medianPricePerSqft": 1398,
+    "minPricePerSqft": 365,
+    "maxPricePerSqft": 4357
+  },
+  "2021-03": {
+    "medianPricePerSqft": 1512,
+    "minPricePerSqft": 307,
+    "maxPricePerSqft": 6025
+  },
+  "2021-04": {
+    "medianPricePerSqft": 1529,
+    "minPricePerSqft": 294,
+    "maxPricePerSqft": 4746
+  },
+  "2021-05": {
+    "medianPricePerSqft": 1376,
+    "minPricePerSqft": 219,
+    "maxPricePerSqft": 5930
+  },
+  "2021-06": {
+    "medianPricePerSqft": 1485,
+    "minPricePerSqft": 202,
+    "maxPricePerSqft": 4837
+  },
+  "2021-07": {
+    "medianPricePerSqft": 1566,
+    "minPricePerSqft": 168,
+    "maxPricePerSqft": 5049
+  },
+  "2021-08": {
+    "medianPricePerSqft": 1472,
+    "minPricePerSqft": 220,
+    "maxPricePerSqft": 4811
+  },
+  "2021-09": {
+    "medianPricePerSqft": 1414,
+    "minPricePerSqft": 455,
+    "maxPricePerSqft": 4979
+  },
+  "2021-10": {
+    "medianPricePerSqft": 1493,
+    "minPricePerSqft": 154,
+    "maxPricePerSqft": 6210
+  },
+  "2021-11": {
+    "medianPricePerSqft": 1640,
+    "minPricePerSqft": 290,
+    "maxPricePerSqft": 5360
+  },
+  "2021-12": {
+    "medianPricePerSqft": 1517,
+    "minPricePerSqft": 336,
+    "maxPricePerSqft": 5786
+  },
+  "2022-01": {
+    "medianPricePerSqft": 1486,
+    "minPricePerSqft": 292,
+    "maxPricePerSqft": 4749
+  },
+  "2022-02": {
+    "medianPricePerSqft": 1563,
+    "minPricePerSqft": 376,
+    "maxPricePerSqft": 5153
+  },
+  "2022-03": {
+    "medianPricePerSqft": 1534,
+    "minPricePerSqft": 269,
+    "maxPricePerSqft": 4953
+  },
+  "2022-04": {
+    "medianPricePerSqft": 1523,
+    "minPricePerSqft": 135,
+    "maxPricePerSqft": 5793
+  },
+  "2022-05": {
+    "medianPricePerSqft": 1798,
+    "minPricePerSqft": 176,
+    "maxPricePerSqft": 4916
+  },
+  "2022-06": {
+    "medianPricePerSqft": 1571,
+    "minPricePerSqft": 285,
+    "maxPricePerSqft": 4664
+  },
+  "2022-07": {
+    "medianPricePerSqft": 1753,
+    "minPricePerSqft": 277,
+    "maxPricePerSqft": 5801
+  },
+  "2022-08": {
+    "medianPricePerSqft": 1603,
+    "minPricePerSqft": 224,
+    "maxPricePerSqft": 4897
+  },
+  "2022-09": {
+    "medianPricePerSqft": 1829,
+    "minPricePerSqft": 543,
+    "maxPricePerSqft": 5295
+  },
+  "2022-10": {
+    "medianPricePerSqft": 1381,
+    "minPricePerSqft": 546,
+    "maxPricePerSqft": 6057
+  },
+  "2022-11": {
+    "medianPricePerSqft": 1486,
+    "minPricePerSqft": 374,
+    "maxPricePerSqft": 5827
+  },
+  "2022-12": {
+    "medianPricePerSqft": 1411,
+    "minPricePerSqft": 257,
+    "maxPricePerSqft": 4924
+  },
+  "2023-01": {
+    "medianPricePerSqft": 1648,
+    "minPricePerSqft": 668,
+    "maxPricePerSqft": 4278
+  },
+  "2023-02": {
+    "medianPricePerSqft": 1765,
+    "minPricePerSqft": 191,
+    "maxPricePerSqft": 5727
+  },
+  "2023-03": {
+    "medianPricePerSqft": 1701,
+    "minPricePerSqft": 299,
+    "maxPricePerSqft": 5758
+  },
+  "2023-04": {
+    "medianPricePerSqft": 1988,
+    "minPricePerSqft": 312,
+    "maxPricePerSqft": 5022
+  },
+  "2023-05": {
+    "medianPricePerSqft": 1934,
+    "minPricePerSqft": 330,
+    "maxPricePerSqft": 5213
+  },
+  "2023-06": {
+    "medianPricePerSqft": 1632,
+    "minPricePerSqft": 549,
+    "maxPricePerSqft": 5300
+  },
+  "2023-07": {
+    "medianPricePerSqft": 2047,
+    "minPricePerSqft": 200,
+    "maxPricePerSqft": 5571
+  },
+  "2023-08": {
+    "medianPricePerSqft": 1609,
+    "minPricePerSqft": 548,
+    "maxPricePerSqft": 4644
+  },
+  "2023-09": {
+    "medianPricePerSqft": 1604,
+    "minPricePerSqft": 285,
+    "maxPricePerSqft": 4661
+  },
+  "2023-10": {
+    "medianPricePerSqft": 1653,
+    "minPricePerSqft": 252,
+    "maxPricePerSqft": 4369
+  },
+  "2023-11": {
+    "medianPricePerSqft": 1969,
+    "minPricePerSqft": 336,
+    "maxPricePerSqft": 3975
+  },
+  "2023-12": {
+    "medianPricePerSqft": 1649,
+    "minPricePerSqft": 137,
+    "maxPricePerSqft": 3854
+  },
+  "2024-01": {
+    "medianPricePerSqft": 1572,
+    "minPricePerSqft": 629,
+    "maxPricePerSqft": 5399
+  },
+  "2024-02": {
+    "medianPricePerSqft": 1715,
+    "minPricePerSqft": 574,
+    "maxPricePerSqft": 4541
+  },
+  "2024-03": {
+    "medianPricePerSqft": 1983,
+    "minPricePerSqft": 586,
+    "maxPricePerSqft": 3948
+  },
+  "2024-04": {
+    "medianPricePerSqft": 1817,
+    "minPricePerSqft": 616,
+    "maxPricePerSqft": 3557
+  }
+}

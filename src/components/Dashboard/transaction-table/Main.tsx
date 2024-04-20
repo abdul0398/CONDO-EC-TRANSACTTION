@@ -23,21 +23,26 @@ const [localLoading, setLocalLoading] = React.useState(true);
  }
 const {typeOfSale, project, tenure, price,  area, contractDate, propertyType, marketSegment, street, district, typeOfArea} = transaction;
 
- const areaSqft = parseInt(area) * 10.7;
+ const areaSqft = Math.floor(parseInt(area) * 10.7);
+ const pricesft = Math.floor(parseInt(price) / areaSqft);
  const monthYear = `20${contractDate.slice(2)}-${contractDate.slice(0,2)}`;
+ const trimTenure = tenure.length > 9 ? tenure.slice(0,9) +"..." : tenure;
+ const trimProject = project.length > 9 ? project.slice(0,9) +"..." : project;
+ const trimPropertyType = propertyType.length > 9 ? propertyType.slice(0,9) +"..." : propertyType;
+ const trimStreet = street.length > 9 ? street.slice(0,9) +"..." : street;
+
  return (
-    <div key={index} style={style} className="h-14 grid gap-1 grid-cols-[3%_17%_4%_7%_10%_10%_10%_14%_6%_17%] border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-      <div className="px-1 text-xs">{index}</div>
+    <div key={index} style={style} className="h-14 grid gap-1 grid-cols-[7%_10%_10%_7%_7%_5%_7%_9%_7%_10%_7%_7%] border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
       <div className="px-1 text-xs">{typeOfSale == '1'? "New Sale":typeOfSale == "2"?"Sub Sale":"Resale"}</div>
-      <div className="px-1 text-xs">{project}</div>
-      <div className="px-1 text-xs">{tenure}</div>
+      <div className="px-1 text-xs hover:cursor-pointer" title={project}>{trimProject}</div>
+      <div title={tenure} className="px-1 text-xs hover:cursor-pointer">{trimTenure}</div>
       <div className="px-1 text-xs">{price}</div>
-      <div className="px-1 text-xs">{parseInt(price)/areaSqft}</div>
+      <div className="px-1 text-xs">{pricesft}</div>
       <div className="px-1 text-xs">{areaSqft}</div>
       <div className="px-1 text-xs">{monthYear}</div>
-      <div className="px-1 text-xs">{propertyType}</div>
+      <div className="px-1 text-xs hover:cursor-pointer" title={propertyType} >{trimPropertyType}</div>
       <div className="px-1 text-xs">{marketSegment}</div>
-      <div className="px-1 text-xs">{street}</div>
+      <div className="px-1 text-xs hover: cursor-pointer" title={street}>{trimStreet}</div>
       <div className="px-1 text-xs">{district}</div>
       <div className="px-1 text-xs">{typeOfArea}</div>
     </div>
@@ -54,19 +59,19 @@ if (isLoading) {
 }
 
  return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white border">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 sm: lg:px-8">
           <div className="overflow-hidden">
             <div className="min-w-full text-left text-sm font-light overflow-hidden">
-              <div className="border-b font-medium dark:border-neutral-500 grid gap-1 grid-cols-[3%_17%_4%_7%_10%_10%_10%_14%_6%_17%] text-sm">
+              <div className="border-b font-medium dark:border-neutral-500 grid gap-1 grid-cols-[7%_10%_10%_7%_7%_5%_7%_9%_7%_10%_7%_7%] text-sm">
                 <div className="px-1 py-4 text-xs">Type of Sale</div>
                 <div className="px-1 py-4 text-xs">Project</div>
                 <div className="px-1 py-4 text-xs">Tenure</div>
                 <div className="px-1 py-4 text-xs">Price($)</div>
                 <div className="px-1 py-4 text-xs">PSF($)</div>
-                <div className="px-1 py-4 text-xs">Area(Sqft)</div>
-                <div className="px-1 py-4 text-xs">MonthYear</div>
+                <div className="px-1 py-4 text-xs hover:cursor-pointer" title='Area(Sqft)'>Are...</div>
+                <div className="px-1 py-4 text-xs hover:cursor-pointer" title='MonthYear'>Mont...</div>
                 <div className="px-1 py-4 text-xs">Project Type</div>
                 <div className="px-1 py-4 text-xs">Market Segment</div>
                 <div className="px-1 py-4 text-xs">Street</div>
@@ -75,7 +80,7 @@ if (isLoading) {
               </div>
               <div className="overflow-hidden">
                 <List
-                 height={480}
+                 height={280}
                  itemCount={transactions.length}
                  itemSize={50} 
                  width={'100%'}
