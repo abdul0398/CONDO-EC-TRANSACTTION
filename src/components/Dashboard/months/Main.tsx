@@ -1,16 +1,6 @@
-import React, { useState, useContext, useEffect, use } from 'react';
-import { FixedSizeList as List } from 'react-window';
+import React, { useState, useContext } from 'react';
 import { MyContext } from "@/context/context";
-import { allAreas, allBedrooms, allDistricts, allGraphData, allProjects, allPropertyTypes, allStreets } from '@/data/constants';
-import data from '@/data/rentals1.json';
 import { rentalData } from '@/types/data';
-
-interface RowProps {
-    index: number;
-    style: React.CSSProperties;
-    data: { month: string; selected: boolean }[];
-    onCheckboxChange: (name: string, checked: boolean) => void;
-}
 
 export default function Months() {
     const {
@@ -37,7 +27,6 @@ export default function Months() {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [localLoading, setLocalLoading] = useState(true);
-    const array = data as rentalData[];
 
 
     // Filter streets based on search query

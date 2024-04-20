@@ -1,19 +1,7 @@
 import React, { useState, useContext, useEffect, use } from "react";
 import { FixedSizeList as List } from "react-window";
 import { MyContext } from "@/context/context";
-import { ResponseBody, rentalData } from "@/types/data";
-import {
-  allDistricts,
-  allProjects,
-  allStreets,
-  allMonths,
-  allAreas,
-  allBedrooms,
-  allPropertyTypes,
-  allGraphData,
-} from "@/data/constants";
 
-import data from "@/data/rentals1.json";
 
 interface RowProps {
   index: number;
