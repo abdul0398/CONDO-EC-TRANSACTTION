@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { AgChartsReact } from "ag-charts-react";
 import { AgChartOptions } from "ag-charts-community";
-import { pieData } from "@/pieData";
+import { pieData } from "@/data/pieData";
 
 export default function PieCharts() {
     const unitsArray = Object.keys(pieData).map((key: any) => {

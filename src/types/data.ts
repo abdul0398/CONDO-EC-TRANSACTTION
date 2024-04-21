@@ -42,10 +42,13 @@ export type RequestBody ={
   selectedDistrictNames: string[];
   selectedStreetNames: string[];
   selectedprojects: string[];
-  selectedFlatType: (string| undefined);
   selectedMonths: string[];
-  selectedProjectType: string;
-  selectedAreas: string[];
+  selectedTenure:string[];
+  selectedSaleType:string;
+  selectedMarketSegment:string;
+  selectedArea:string;
+  selectedPrice:string
+  selectedApartmentTypes:string
 };
 
 
@@ -53,12 +56,14 @@ export type ResponseBody = {
   districts: string[];
   streets: string[];
   projects: string[];
-  flatTypes: (string |undefined)[];
   months: string[];
-  projectTypes: string[];
+  tenures: string[];
+  saletypes: string[];
+  marketSegments: string[];
   areas: string[];
-  rentalData: rentalData[];
-  graphCalculation: any;
+  prices: string[];
+  apartmentTypes: string[];
+  transactions: Transaction[];
 };
 
 export interface Transaction {

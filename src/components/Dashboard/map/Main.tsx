@@ -4,15 +4,7 @@ import Map from "react-map-gl/maplibre";
 import { MyContext } from "@/context/context";
 
 export default function MapComponent() {
-  const { projects, isLoading, selectedprojects } = React.useContext(MyContext);
-
-  if (isLoading){
-    return (
-      <div className="h-full w-full flex items-center justify-center bg-white">
-        <p className="text-lg">Loading...</p>
-      </div>
-    );  
-  }
+  const { projects, selectedprojects } = React.useContext(MyContext);
   const usefulProjects = selectedprojects.length > 0 ? selectedprojects : projects;
 
 

@@ -15,6 +15,16 @@ interface MyContextValue {
   setMonths: React.Dispatch<React.SetStateAction<string[]>>;
   tenure:string[];
   setTenure: React.Dispatch<React.SetStateAction<string[]>>;
+  areas:string[];
+  setAreas: React.Dispatch<React.SetStateAction<string[]>>;
+  saleTypes:string[];
+  setSaleTypes: React.Dispatch<React.SetStateAction<string[]>>;
+  apartmentTypes:string[];
+  setApartmentTypes: React.Dispatch<React.SetStateAction<string[]>>;
+  marketsegments:string[];
+  setMarketSegments:React.Dispatch<React.SetStateAction<string[]>>;
+  prices:string[];
+  setPrices:React.Dispatch<React.SetStateAction<string[]>>;
   transactions: Transaction[];
   setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
   selectedDistrictNames: string[];
@@ -29,12 +39,12 @@ interface MyContextValue {
   setSelectedMonths: React.Dispatch<React.SetStateAction<string[]>>;
   selectedMarketSegment: string;
   setSelectedMarketSegment: React.Dispatch<React.SetStateAction<string>>;
-  selectedAreas: string[];
-  setSelectedAreas: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedArea: string;
+  setSelectedArea: React.Dispatch<React.SetStateAction<string>>;
   selectedApartmentTypes: string;
   setSelectedApartmentTypes: React.Dispatch<React.SetStateAction<string>>;
-  selectedPriceRange : string[];
-  setSelectedPriceRange:React.Dispatch<React.SetStateAction<string[]>>;
+  selectedPrice : string;
+  setSelectedPrice:React.Dispatch<React.SetStateAction<string>>;
   selectedTenure:string[];
   setSelectedTenure:React.Dispatch<React.SetStateAction<string[]>>;
 }
@@ -53,6 +63,16 @@ export const MyContext = createContext<MyContextValue>({
   setMonths: () => { },
   tenure:[],
   setTenure:()=>{},
+  areas:[],
+  setAreas:()=>{},
+  saleTypes:[],
+  setSaleTypes:()=>{},
+  apartmentTypes:[],
+  setApartmentTypes:()=>{},
+  marketsegments:[],
+  setMarketSegments:()=>{},
+  prices:[],
+  setPrices:()=>{},
   transactions: [],
   setTransactions: () => { },
   selectedDistrictNames: [],
@@ -67,12 +87,12 @@ export const MyContext = createContext<MyContextValue>({
   setSelectedMonths: () => { },
   selectedMarketSegment: '',
   setSelectedMarketSegment: () => { },
-  selectedAreas: [],
-  setSelectedAreas: () => { },
+  selectedArea: '',
+  setSelectedArea: () => { },
   selectedApartmentTypes: "",
   setSelectedApartmentTypes: () => { },
-  selectedPriceRange:[],
-  setSelectedPriceRange: ()=>{},
+  selectedPrice:'',
+  setSelectedPrice: ()=>{},
   selectedTenure:[],
   setSelectedTenure:()=>{}
 });
@@ -84,6 +104,11 @@ const Context: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [projects, setprojects] = useState<string[]>([]);
   const [months, setMonths] = useState<string[]>([]);
   const [tenure, setTenure] = useState<string[]>([]);
+  const [areas, setAreas] = useState<string[]>([]);
+  const [saleTypes, setSaleTypes] = useState<string[]>([]);
+  const [apartmentTypes, setApartmentTypes] = useState<string[]>([]);
+  const [marketsegments, setMarketSegments] = useState<string[]>([]);
+  const [prices, setPrices] = useState<string[]>([]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [selectedDistrictNames, setSelectedDistrictsNames] = useState<string[]>([]);
   const [selectedStreetNames, setSelectedStreetNames] = useState<string[]>([]);
@@ -91,16 +116,16 @@ const Context: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [selectedSaleType, setSelectedSaleType] = useState<string>('');
   const [selectedMonths, setSelectedMonths] = useState<string[]>([]);
   const [selectedMarketSegment, setSelectedMarketSegment] = useState<string>('');
-  const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
+  const [selectedArea, setSelectedArea] = useState<string>('');
   const [selectedApartmentTypes, setSelectedApartmentTypes] = useState<string>('');
-  const [selectedPriceRange, setSelectedPriceRange] = useState<string[]>([]);
+  const [selectedPrice, setSelectedPrice] = useState<string>('');
   const [selectedTenure, setSelectedTenure] = useState<string[]>([]);
 
 
   // Provide the context value to children
   return (
-    <MyContext.Provider value={{ tenure, transactions, setTransactions,
-      isLoading, setIsLoading, districts, setdistricts, streets, setStreets, projects, setprojects, months, setMonths, selectedDistrictNames, setSelectedDistrictsNames, selectedStreetNames, setSelectedStreetNames, selectedprojects, selectedTenure, setSelectedTenure, setSelectedprojects, selectedSaleType, setSelectedSaleType, selectedMonths, setSelectedMonths, selectedMarketSegment, selectedApartmentTypes, setSelectedApartmentTypes, setSelectedMarketSegment, selectedAreas, setSelectedAreas, selectedPriceRange, setSelectedPriceRange, setTenure
+    <MyContext.Provider value={{ tenure, areas, marketsegments, setMarketSegments, prices, setPrices, saleTypes, setAreas, setSaleTypes, apartmentTypes, setApartmentTypes, transactions, setTransactions,
+      isLoading, setIsLoading, districts, setdistricts, streets, setStreets, projects, setprojects, months, setMonths, selectedDistrictNames, setSelectedDistrictsNames, selectedStreetNames, setSelectedStreetNames, selectedprojects, selectedTenure, setSelectedTenure, setSelectedprojects, selectedSaleType, setSelectedSaleType, selectedMonths, setSelectedMonths, selectedMarketSegment, selectedApartmentTypes, setSelectedApartmentTypes, setSelectedMarketSegment, selectedArea, setSelectedArea, selectedPrice, setSelectedPrice, setTenure
     }}>
       {children}
     </MyContext.Provider>

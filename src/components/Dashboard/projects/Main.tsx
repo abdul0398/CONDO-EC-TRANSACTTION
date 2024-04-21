@@ -1,6 +1,10 @@
 import React, { useState, useContext, useEffect, use } from "react";
 import { FixedSizeList as List } from "react-window";
 import { MyContext } from "@/context/context";
+import { districtArray, streetArray, monthArray, tenureArray } from "@/data/constants";
+import { ResponseBody, Transaction } from "@/types/data";
+import data  from "@/data/transactions.json";
+
 interface RowProps {
   index: number;
   style: React.CSSProperties;
@@ -25,14 +29,37 @@ const Row: React.FC<RowProps> = ({ index, style, data, onCheckboxChange }) => {
 };
 
 export default function Projects() {
+  const transactions = data as Transaction[];
   const {
     projects,
+    setMonths,
+    setdistricts,
+    setStreets,
+    setApartmentTypes,
+    setAreas,
+    setSaleTypes,
+    setTenure,
+    setMarketSegments,
+    setPrices,
+    selectedArea,
+    selectedDistrictNames,
+    selectedMonths,
     selectedprojects,
+    selectedStreetNames,
+    selectedApartmentTypes,
+    selectedMarketSegment,
+    selectedPrice,
+    selectedSaleType,
+    selectedTenure,
     setSelectedprojects,
-   
+    setTransactions,
+    setIsLoading,
+
   } = useContext(MyContext);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [isReady, setIsReady] = useState(false);
+
 
   // Filter streets based on search query
   const filteredProjects = projects.filter((project) =>
@@ -51,6 +78,77 @@ export default function Projects() {
       setSelectedprojects((prev) => prev.filter((name) => name !== name));
     }
   };
+
+  useEffect(() => {
+    // Set isReady to true after the initial render
+    setIsReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isReady) return;
+    setIsLoading(true);
+    async function processData() {
+      const preData = {
+        selectedArea,
+        selectedDistrictNames,
+        selectedMonths,
+        selectedprojects,
+        selectedStreetNames,
+        selectedApartmentTypes,
+        selectedMarketSegment,
+        selectedPrice,
+        selectedSaleType,
+        selectedTenure,
+      }
+
+      if (
+        selectedDistrictNames.length === 0 &&
+        selectedStreetNames.length === 0 &&
+        selectedprojects.length === 0 &&
+        selectedArea === "" &&
+        selectedMonths.length === 0 &&
+        selectedPrice === "" &&
+        selectedSaleType === "" &&
+        selectedMarketSegment === "" &&
+        selectedApartmentTypes === "" &&
+        selectedTenure.length === 0
+      ) {
+        setdistricts(districtArray);
+        setStreets(streetArray);
+        setMonths(monthArray);
+        setTenure(tenureArray);
+        setPrices([]);
+        setAreas([]);
+        setSaleTypes([]);
+        setApartmentTypes([]);
+        setMarketSegments([]);
+        setIsLoading(false);
+        setTransactions(transactions)
+      } else {
+        const res = await fetch("/api/processData", {
+          method: "POST",
+          body: JSON.stringify(preData),
+        });
+        const data: ResponseBody = await res.json();
+        setdistricts(data.districts);
+        setStreets(data.streets);
+        setMonths(data.months);
+        setAreas(data.areas);
+        setSaleTypes(data.saletypes);
+        setApartmentTypes(data.apartmentTypes);
+        setMarketSegments(data.marketSegments);
+        setPrices(data.prices);
+        setTenure(data.tenures);
+        setTransactions(data.transactions);
+        setIsLoading(false);
+      }
+    }
+    processData();
+  }, [selectedprojects]);
+
+
+
+
 
   return (
 
