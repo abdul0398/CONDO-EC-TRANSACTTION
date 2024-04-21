@@ -21,11 +21,11 @@ import UnitSoldInMonth from "./graphs/unitSoldInMonth/Main";
 import UnitSoldInProject from "./graphs/unitSoldInproject/Main";
 
 export default function Dashboard() {
-    const { setSelectedAreas, setSelectedDistrictsNames, setSelectedMonths, setSelectedStreetNames, setSelectedprojects } = useContext(MyContext)
+    const { setSelectedArea, setSelectedDistrictsNames, setSelectedMonths, setSelectedStreetNames, setSelectedprojects } = useContext(MyContext)
 
     const handleReset = (e: any) => {
         e.preventDefault()
-        setSelectedAreas([])
+        setSelectedArea('')
         setSelectedDistrictsNames([])
         setSelectedMonths([])
         setSelectedStreetNames([])
