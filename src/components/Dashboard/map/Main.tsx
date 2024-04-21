@@ -1,13 +1,16 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as React from "react";
-import Map from "react-map-gl/maplibre";
+import Map, { Marker } from "react-map-gl/maplibre";
 import { MyContext } from "@/context/context";
+import { coordinate } from "@/data/constants";
+import { GoDotFill } from "react-icons/go";
+import unitSold from "@/data/projectsUnitsSolds.json";
 
 export default function MapComponent() {
   const { projects, selectedprojects } = React.useContext(MyContext);
   const usefulProjects = selectedprojects.length > 0 ? selectedprojects : projects;
 
-
+const unitSoldData = unitSold as any;
 
   return (
     <Map
@@ -19,7 +22,10 @@ export default function MapComponent() {
       maxBounds={[103.596, 1.1443, 104.1, 1.4835]}
       mapStyle="https://www.onemap.gov.sg/maps/json/raster/mbstyle/Default.json"
     >
-      {/* {usefulProjects?.map((project, index) => {
+      {usefulProjects?.map((project, index) => {
+        if(coordinate[project] === undefined) return null;
+
+
         return (
           <Marker
             key={index}
@@ -36,11 +42,7 @@ export default function MapComponent() {
                 title={`Project:  ${project}\nProperty Type:  ${coordinate[project].nonlanded > coordinate[project].executive
                     ? "Non-Landed"
                     : "Executive Condo"
-                  } \nMediun of rent (psf):  ${Math.round(coordinate[project].totalRent / coordinate[project].totalArea
-                  )}\nRentals Count:  ${coordinate[project].nonlanded > coordinate[project].executive
-                    ? coordinate[project].nonlanded
-                    : coordinate[project].executive
-                  }`}
+                  }\n Units Sold : ${unitSoldData[project]}`}
                 color={
                   coordinate[project].nonlanded > coordinate[project].executive
                     ? "#460FFA"
@@ -50,7 +52,7 @@ export default function MapComponent() {
             </div>
           </Marker>
         );
-      })} */}
+      })}
     </Map>
   );
 }
