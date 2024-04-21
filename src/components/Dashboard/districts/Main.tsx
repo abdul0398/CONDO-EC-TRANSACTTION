@@ -64,6 +64,7 @@ export default function Districts() {
     district.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+
   const itemData = filteredDistricts.map((district, index) => ({
     district,
     selected: selectedDistrictNames.includes(district) ? true : false,

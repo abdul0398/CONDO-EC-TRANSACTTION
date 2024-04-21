@@ -8,8 +8,26 @@ Chart.register(...registerables);
 
 export default function UnitSoldInMonth() {
     
-    const labels = Object.keys(data);
-   const unitSold = Object.values(data);
+
+    const graphdata = data as any; 
+
+
+    const {months, selectedMonths} = useContext(MyContext);
+
+
+    const filteredKey = selectedMonths.length == 0? Object.keys(data).filter((key) => {
+        const month = key.slice(5) + key.slice(2, 4);
+        return months.includes(month);
+    }) :Object.keys(data).filter((key) => {
+        const month = key.slice(5) + key.slice(2, 4);
+        return selectedMonths.includes(month);
+    });
+
+
+    const labels = filteredKey;
+   const unitSold = filteredKey.map((key: any) => {
+        return graphdata[key];
+   });
 
 
     const colors = labels.map((label, index) => {

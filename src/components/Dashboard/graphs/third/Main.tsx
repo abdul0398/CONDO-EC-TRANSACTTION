@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, {useContext, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart } from 'chart.js';
 import { registerables } from 'chart.js';
@@ -18,29 +18,43 @@ function getRandomColor() {
     return color;
 }
 export default function ThirdGraph() {
+    const graphdata = graph3 as any;
+
+
+    const {months, selectedMonths} = useContext(MyContext);
+
+
+    const filteredKey = selectedMonths.length == 0? Object.keys(graph3).filter((key) => {
+        const month = key.slice(5) + key.slice(2, 4);
+        return months.includes(month);
+    }) :Object.keys(graph3).filter((key) => {
+        const month = key.slice(5) + key.slice(2, 4);
+        return selectedMonths.includes(month);
+    });
+
     const [dynamicDataset, setData] = useState<any[]>([]);
     const [dynamicLabels, setLabels] = useState<string[]>([])
 
     useEffect(() => {
-        const labels: string[] = Object.keys(graph3);
+        const labels: string[] = filteredKey;
        const dataset =  [
             {
                 label: 'Freehold',
-                data: Object.values(graph3).map((data: any) => {
-                    return data.Freehold;
+                data: filteredKey.map((key: any) => {
+                    return graphdata[key].Freehold;
                 }),
             },
             {
                 label: 'Leasehold',
-                data: Object.values(graph3).map((data: any) => {
-                    return data.Leasehold;
+                data: filteredKey.map((key: any) => {
+                    return graphdata[key].Leasehold;
                 }),
 
             },
         ]
         setData(dataset);
         setLabels(labels);
-    }, []);
+    }, [months, selectedMonths]);
     const data = {
         labels: dynamicLabels,
         datasets: dynamicDataset

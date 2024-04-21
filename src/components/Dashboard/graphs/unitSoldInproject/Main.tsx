@@ -7,39 +7,21 @@ import data from '@/data/projectsUnitsSolds.json';
 Chart.register(...registerables);
 
 export default function UnitSoldInProject() {
-    
-    const labels = Object.keys(data);
-    const unitsSold = Object.values(data);
-    // let unitLaunched;
-    // if(includeEC != 'All'){
-    //     const obj :any = {};
-    //         Object.keys(data).forEach((key) => {
-    //             if(obj[key] === undefined){
-    //                 obj[key] = {
-    //                     listings:[],
-    //                     totalLaunchedByMonth:0
-    //                 }
-    //             }
-    //             data[key].listings.forEach((item:any) => {
-    //                 if(item.propertyType !== (includeEC == "EC"? "Exec Condo" : "Non-Landed")){
-    //                     obj[key].listings.push(item);
-    //                     obj[key].totalLaunchedByMonth += item.developerSales[0].launchedInMonth;
-    //                 }
-    //             })
-    //         })
-    //     unitLaunched = Object.values(obj).map((item:any) => item.totalLaunchedByMonth);
-    // }else{
-    //     unitLaunched = Object.values(data).map((item:any) => item.totalLaunchedByMonth);
-    // }
+    const graphData = data as any;
 
-    // const handleClickOnBar = (event:any, array:Array<any>) => {
-    //     if (array.length > 0) {
-    //         const { index } = array[0];
-    //         const label = labels[index];
-    //         selectedMonth == label ? setSelectedMonth("2024-02") : setSelectedMonth(label);
-    //         // Perform any action you need with the clicked bar
-    //     }
-    // }
+    const {projects, selectedprojects} = useContext(MyContext);
+
+    const filterGraphDataKey = selectedprojects.length == 0? Object.keys(graphData).filter((key) => {
+        return projects.includes(key);
+    }) :Object.keys(graphData).filter((key) => {
+        return selectedprojects.includes(key);
+    })
+
+
+    const labels = filterGraphDataKey;
+    const unitsSold = filterGraphDataKey.map((key: any) => {
+        return graphData[key];
+    });
 
 
     const colors = labels.map((label, index) => {
