@@ -37,7 +37,7 @@ export default function UnitSoldInMonth() {
     const dataset = {
         labels: [...labels],
         datasets: [{
-            label: 'Units Launched',
+            label: 'Units Sold In Month',
             data: [...unitSold],
             borderWidth: 0,
             backgroundColor: colors,

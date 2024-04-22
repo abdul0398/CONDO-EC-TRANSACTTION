@@ -31,7 +31,7 @@ export default function UnitSoldInProject() {
     const dataset = {
         labels: [...labels],
         datasets: [{
-            label: 'Units Launched',
+            label: 'Units Sold In Projects',
             data: [...unitsSold],
             borderWidth: 0,
             backgroundColor: colors,
