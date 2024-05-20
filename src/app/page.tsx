@@ -1,12 +1,19 @@
-'use client'
+"use client";
 import React, { useState, useMemo } from "react";
 import Dashboard from "../components/Dashboard/Main";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { MyContext } from "@/context/context";
-import { districtArray, streetArray, projectArray, monthArray, tenureArray } from "@/data/constants";
+import {
+  districtArray,
+  streetArray,
+  projectArray,
+  monthArray,
+  tenureArray,
+  propertyTypeArray,
+} from "@/data/constants";
 import transaction from "@/data/transactions.json";
 import { Transaction } from "@/types/data";
-import { Spinner } from "@material-tailwind/react";
+import { BsBuildings } from "react-icons/bs";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -15,69 +22,132 @@ export default function Home() {
   const [projects, setprojects] = useState<string[]>(projectArray);
   const [months, setMonths] = useState<string[]>(monthArray);
   const [tenure, setTenure] = useState<string[]>(tenureArray);
-  const [transactions, setTransactions] = useState<Transaction[]>(transaction as Transaction[]);
-  const [areas, setAreas] = useState<string[]>(["200", "1500", "6000", "15000"]);
-  const [apartmentTypes, setApartmentTypes] = useState<string[]>([]);
-  const [marketsegments, setMarketSegments] = useState<string[]>([]);
-  const [prices, setPrices] = useState<string[]>([]);
-  const [saleTypes, setSaleTypes] = useState<string[]>([]);
-  const [selectedDistrictNames, setSelectedDistrictsNames] = useState<string[]>([]);
-  const [selectedStreetNames, setSelectedStreetNames] = useState<string[]>([]);
-  const [selectedprojects, setSelectedprojects] = useState<string[]>([]);
-  const [selectedSaleType, setSelectedSaleType] = useState<string>('');
-  const [selectedMonths, setSelectedMonths] = useState<string[]>([]);
-  const [selectedMarketSegment, setSelectedMarketSegment] = useState<string>('');
-  const [selectedArea, setSelectedArea] = useState<string>('');
-  const [selectedApartmentTypes, setSelectedApartmentTypes] = useState<string>('');
-  const [selectedPrice, setSelectedPrice] = useState<string>('');
-  const [selectedTenure, setSelectedTenure] = useState<string[]>([]);
-
-
+  const [transactions, setTransactions] = useState<Transaction[]>(
+    transaction as Transaction[]
+  );
+  const [areas, setAreas] = useState<string[]>([
+    "<1000",
+    "1000-5000",
+    "5000-10000",
+    ">10000",
+  ]);
+  const [apartmentTypes, setApartmentTypes] =
+    useState<string[]>(propertyTypeArray);
+  const [marketsegments, setMarketSegments] = useState<string[]>([
+    "CCR",
+    "OCR",
+    "RCR",
+  ]);
+  const [prices, setPrices] = useState<string[]>([
+    "<5m",
+    "5m-20m",
+    "20m-40m",
+    ">40m",
+  ]);
+  const [saleTypes, setSaleTypes] = useState<string[]>([
+    "New Sale",
+    "Sub Sale",
+    "Resale",
+  ]);
+  const [selectedDistrictName, setSelectedDistrictsName] = useState<string>("");
+  const [selectedStreetName, setSelectedStreetName] = useState<string>("");
+  const [selectedproject, setSelectedproject] = useState<string>("");
+  const [selectedSaleType, setSelectedSaleType] = useState<string>("");
+  const [selectedMonth, setSelectedMonth] = useState<string>("");
+  const [selectedMarketSegment, setSelectedMarketSegment] =
+    useState<string>("");
+  const [selectedArea, setSelectedArea] = useState<string>("");
+  const [selectedApartmentType, setSelectedApartmentType] =
+    useState<string>("");
+  const [selectedPrice, setSelectedPrice] = useState<string>("");
+  const [selectedTenure, setSelectedTenure] = useState<string>("");
 
   // Memoize context value to prevent unnecessary re-renders
-  const contextValue = useMemo(() => ({
-    selectedSaleType, setSelectedSaleType,
-    isLoading, setIsLoading,
-    tenure, setTenure,
-    transactions, setTransactions,
-    districts, setdistricts,
-    streets, setStreets,
-    marketsegments, setMarketSegments,
-    prices, setPrices,
-    projects, setprojects,
-    areas, setAreas,
-    apartmentTypes, setApartmentTypes,
-    saleTypes, setSaleTypes,
-    selectedTenure, setSelectedTenure,
-    selectedApartmentTypes, setSelectedApartmentTypes,
-    months, setMonths,
-    selectedDistrictNames, setSelectedDistrictsNames,
-    selectedStreetNames, setSelectedStreetNames,
-    selectedMarketSegment, setSelectedMarketSegment,
-    selectedprojects, setSelectedprojects,
-    selectedMonths, setSelectedMonths,
-    selectedArea, setSelectedArea,
-    selectedPrice, setSelectedPrice
-  }), [isLoading, districts, marketsegments, prices, areas, saleTypes, apartmentTypes, transactions, selectedMarketSegment, selectedPrice, selectedSaleType, tenure, streets, projects, months, selectedDistrictNames, selectedTenure, selectedStreetNames, selectedprojects, selectedMonths, selectedApartmentTypes, selectedArea]);
+  const contextValue = useMemo(
+    () => ({
+      selectedSaleType,
+      setSelectedSaleType,
+      isLoading,
+      setIsLoading,
+      tenure,
+      setTenure,
+      transactions,
+      setTransactions,
+      districts,
+      setdistricts,
+      streets,
+      setStreets,
+      marketsegments,
+      setMarketSegments,
+      prices,
+      setPrices,
+      projects,
+      setprojects,
+      areas,
+      setAreas,
+      apartmentTypes,
+      setApartmentTypes,
+      saleTypes,
+      setSaleTypes,
+      selectedTenure,
+      setSelectedTenure,
+      selectedApartmentType,
+      setSelectedApartmentType,
+      months,
+      setMonths,
+      selectedDistrictName,
+      setSelectedDistrictsName,
+      selectedStreetName,
+      setSelectedStreetName,
+      selectedMarketSegment,
+      setSelectedMarketSegment,
+      selectedproject,
+      setSelectedproject,
+      selectedMonth,
+      setSelectedMonth,
+      selectedArea,
+      setSelectedArea,
+      selectedPrice,
+      setSelectedPrice,
+    }),
+    [
+      isLoading,
+      districts,
+      marketsegments,
+      prices,
+      areas,
+      saleTypes,
+      apartmentTypes,
+      transactions,
+      selectedMarketSegment,
+      selectedPrice,
+      selectedSaleType,
+      tenure,
+      streets,
+      projects,
+      months,
+      selectedDistrictName,
+      selectedTenure,
+      selectedStreetName,
+      selectedproject,
+      selectedMonth,
+      selectedApartmentType,
+      selectedArea,
+    ]
+  );
 
   return (
     <>
-      {
-        isLoading && (
-          <div className="bg-black fixed z-50 w-full h-full flex justify-center items-center opacity-80">
-            <div role="status">
-              <svg aria-hidden="true" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
-                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" />
-              </svg>
-              <span className="sr-only">Loading...</span>
-            </div>
+      {isLoading && (
+        <div className="bg-black pointer-events-none fixed z-50 w-full h-full flex justify-center items-center opacity-80">
+          <div role="status">
+            <BsBuildings size={50} color="white" />
+            <p className="text-white">Loading...</p>
           </div>
-        )
-      }
+        </div>
+      )}
       <main className="h-full w-full pt-8">
-        <section className="w-[1200px] mx-auto h-full">
-          <h1 className="text-3xl">Condo & EC Transactions</h1>
+        <section className="w-full h-full">
           <MyContext.Provider value={contextValue}>
             <Dashboard />
           </MyContext.Provider>

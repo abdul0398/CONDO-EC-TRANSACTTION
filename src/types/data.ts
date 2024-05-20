@@ -4,12 +4,12 @@ export type data = {
 
 export type FilterHandlerParams = {
   selectedDistrict: string;
-  selectedProjects: string[];
-  selectedStreet: string[];
-  selectedMonths: string[];
+  selectedProjects: string;
+  selectedStreet: string;
+  selectedMonths: string;
   selectedFlatType: string;
   selectedPropertyType: string;
-  selectedAreas: string[];
+  selectedAreas: string;
 };
 
 export type filterHandlerReturn = {
@@ -39,16 +39,16 @@ export type rentalData = {
 
 
 export type RequestBody ={
-  selectedDistrictNames: string[];
-  selectedStreetNames: string[];
-  selectedprojects: string[];
-  selectedMonths: string[];
-  selectedTenure:string[];
+  selectedDistrictName: string;
+  selectedStreetName: string;
+  selectedproject: string;
+  selectedMonth: string;
+  selectedTenure:string;
   selectedSaleType:string;
   selectedMarketSegment:string;
   selectedArea:string;
   selectedPrice:string
-  selectedApartmentTypes:string
+  selectedApartmentType:string
 };
 
 

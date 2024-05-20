@@ -1,9 +1,16 @@
-import { Button } from "@/components/ui/button";
 import { MyContext } from "@/context/context";
-import { districtArray, monthArray, projectArray, streetArray, tenureArray } from "@/data/constants";
+import {
+  districtArray,
+  monthArray,
+  projectArray,
+  streetArray,
+  tenureArray,
+} from "@/data/constants";
 import { useContext, useEffect, useState } from "react";
 import { ResponseBody, Transaction } from "@/types/data";
 import data from "@/data/transactions.json";
+import WindowedSelect from "react-windowed-select";
+import { customStyles } from "@/styles/select";
 
 export default function PropertyType() {
   const transactions = data as Transaction[];
@@ -20,51 +27,24 @@ export default function PropertyType() {
     setMarketSegments,
     setPrices,
     selectedArea,
-    selectedDistrictNames,
-    selectedMonths,
-    selectedprojects,
-    selectedStreetNames,
-    selectedApartmentTypes,
+    selectedDistrictName,
+    selectedMonth,
+    selectedproject,
+    selectedStreetName,
+    selectedApartmentType,
     selectedMarketSegment,
     selectedPrice,
     selectedSaleType,
     selectedTenure,
     setTransactions,
-    setSelectedApartmentTypes,
-    setIsLoading
+    setSelectedApartmentType,
+    setIsLoading,
   } = useContext(MyContext);
   const [isReady, setIsReady] = useState(false);
 
-  let op1 = false;
-  let op2 = false;
-  let op3 = false;
-
-  if (apartmentTypes.length === 0) {
-    op1 = true;
-    op2 = true;
-    op3 = true;
-
-  }
-  apartmentTypes.forEach((apartmentType) => {
-    if (apartmentType == "Apartment") {
-      op1 = true;
-    } else if (apartmentType == "Condominium") {
-      op2 = true;
-    } else if (apartmentType == "Executive Condominium") {
-      op3 = true;
-    }
-  })
-
-
-  const handleclick = (e: any) => {
-    if (selectedApartmentTypes === e.target.value) {
-      setSelectedApartmentTypes('');
-      return;
-    }
-    setSelectedApartmentTypes(e.target.value);
-  }
-
-
+  const handleSelect = (e: any) => {
+    setSelectedApartmentType(e.value as string);
+  };
 
   useEffect(() => {
     // Set isReady to true after the initial render
@@ -77,27 +57,27 @@ export default function PropertyType() {
     async function processData() {
       const preData = {
         selectedArea,
-        selectedDistrictNames,
-        selectedMonths,
-        selectedprojects,
-        selectedStreetNames,
-        selectedApartmentTypes,
+        selectedDistrictName,
+        selectedMonth,
+        selectedproject,
+        selectedStreetName,
+        selectedApartmentType,
         selectedMarketSegment,
         selectedPrice,
         selectedSaleType,
         selectedTenure,
-      }
+      };
       if (
-        selectedDistrictNames.length === 0 &&
-        selectedStreetNames.length === 0 &&
-        selectedprojects.length === 0 &&
+        selectedDistrictName === "" &&
+        selectedStreetName === "" &&
+        selectedproject === "" &&
         selectedArea === "" &&
-        selectedMonths.length === 0 &&
+        selectedMonth === "" &&
         selectedPrice === "" &&
         selectedSaleType === "" &&
         selectedMarketSegment === "" &&
-        selectedApartmentTypes === "" &&
-        selectedTenure.length === 0
+        selectedApartmentType === "" &&
+        selectedTenure === ""
       ) {
         setprojects(projectArray);
         setStreets(streetArray);
@@ -109,7 +89,7 @@ export default function PropertyType() {
         setSaleTypes([]);
         setAreas([]);
         setMarketSegments([]);
-        setTransactions(transactions)
+        setTransactions(transactions);
 
         setIsLoading(false);
       } else {
@@ -134,40 +114,26 @@ export default function PropertyType() {
       }
     }
     processData();
-  }, [selectedApartmentTypes]);
+  }, [selectedApartmentType]);
 
-
-
+  const options = apartmentTypes.map((apartmentType) => ({
+    value: apartmentType,
+    label: apartmentType,
+  }));
 
   return (
-    <section className="w-full">
-      {
-        op1 && (
-          <div>
-            <Button value="Apartment" className="w-full mt-3" variant={selectedApartmentTypes == 'Apartment' ? 'default' : "outline"} onClick={(e) => handleclick(e)} >
-              Apartment
-            </Button>
-          </div>
-        )
+    <WindowedSelect
+      placeholder="Select Property Type"
+      options={options}
+      value={
+        selectedApartmentType
+          ? { value: selectedApartmentType, label: selectedApartmentType }
+          : null
       }
-      {
-        op2 && (
-          <div>
-            <Button value="Condominium" className="w-full mt-3" variant={selectedApartmentTypes == 'Condominium' ? 'default' : "outline"} onClick={(e) => handleclick(e)} >
-              Condominium
-            </Button>
-          </div>
-        )
-      }
-      {
-        op3 && (
-          <div>
-            <Button value="Executive Condominium" className="w-full mt-3" variant={selectedApartmentTypes == 'Executive Condominium' ? 'default' : "outline"} onClick={(e) => handleclick(e)} >
-              Executive Condominium
-            </Button>
-          </div>
-        )
-      }
-    </section>
-  )
+      windowThreshold={50}
+      styles={customStyles}
+      menuPortalTarget={document.querySelector("body")}
+      onChange={(e: any) => handleSelect(e)}
+    />
+  );
 }

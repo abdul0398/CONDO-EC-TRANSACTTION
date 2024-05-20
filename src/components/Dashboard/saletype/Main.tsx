@@ -1,12 +1,28 @@
-import { Button } from "@/components/ui/button";
 import { MyContext } from "@/context/context";
-import { monthArray, projectArray, streetArray, tenureArray } from "@/data/constants";
+import {
+  monthArray,
+  projectArray,
+  streetArray,
+  tenureArray,
+} from "@/data/constants";
 import { useContext, useEffect, useState } from "react";
 import { ResponseBody, Transaction } from "@/types/data";
 import data from "@/data/transactions.json";
+import WindowedSelect from "react-windowed-select";
+import { customStyles } from "@/styles/select";
 
 export default function Saletype() {
   const transactions = data as Transaction[];
+  const obj: {
+    [key: string]: string;
+  } = {
+    "New Sale": "1",
+    "Sub Sale": "2",
+    Resale: "3",
+    "1": "New Sale",
+    "2": "Sub Sale",
+    "3": "Resale",
+  };
   const {
     saleTypes,
     setMonths,
@@ -18,50 +34,20 @@ export default function Saletype() {
     setMarketSegments,
     setPrices,
     selectedArea,
-    selectedDistrictNames,
-    selectedMonths,
-    selectedprojects,
-    selectedStreetNames,
-    selectedApartmentTypes,
+    selectedDistrictName,
+    selectedMonth,
+    selectedproject,
+    selectedStreetName,
+    selectedApartmentType,
     selectedMarketSegment,
     selectedPrice,
     selectedSaleType,
     selectedTenure,
     setTransactions,
     setSelectedSaleType,
-    setIsLoading
+    setIsLoading,
   } = useContext(MyContext);
   const [isReady, setIsReady] = useState(false);
-
-
-  let op1 = false;
-  let op2 = false;
-  let op3 = false;
-
-  if (saleTypes.length === 0) {
-    op1 = true;
-    op2 = true;
-    op3 = true;
-
-  }
-  saleTypes.forEach((saleType) => {
-    if (saleType == "1") {
-      op1 = true;
-    } else if (saleType == "2") {
-      op2 = true;
-    } else if (saleType == "3") {
-      op3 = true;
-    }
-  })
-
-  const handleclick = (e: any) => {
-    if (selectedSaleType === e.target.value) {
-      setSelectedSaleType('');
-      return;
-    }
-    setSelectedSaleType(e.target.value);
-  }
-
 
   useEffect(() => {
     // Set isReady to true after the initial render
@@ -74,30 +60,30 @@ export default function Saletype() {
     async function processData() {
       const preData = {
         selectedArea,
-        selectedDistrictNames,
-        selectedMonths,
-        selectedprojects,
-        selectedStreetNames,
-        selectedApartmentTypes,
+        selectedDistrictName,
+        selectedMonth,
+        selectedproject,
+        selectedStreetName,
+        selectedApartmentType,
         selectedMarketSegment,
         selectedPrice,
         selectedSaleType,
         selectedTenure,
-      }
+      };
 
       console.log(selectedSaleType);
 
       if (
-        selectedDistrictNames.length === 0 &&
-        selectedStreetNames.length === 0 &&
-        selectedprojects.length === 0 &&
+        selectedDistrictName == "" &&
+        selectedStreetName === "" &&
+        selectedproject === "" &&
         selectedArea === "" &&
-        selectedMonths.length === 0 &&
+        selectedMonth === "" &&
         selectedPrice === "" &&
         selectedSaleType === "" &&
         selectedMarketSegment === "" &&
-        selectedApartmentTypes === "" &&
-        selectedTenure.length === 0
+        selectedApartmentType === "" &&
+        selectedTenure === ""
       ) {
         setprojects(projectArray);
         setStreets(streetArray);
@@ -108,7 +94,7 @@ export default function Saletype() {
         setApartmentTypes([]);
         setAreas([]);
         setMarketSegments([]);
-        setTransactions(transactions)
+        setTransactions(transactions);
 
         setIsLoading(false);
       } else {
@@ -134,37 +120,31 @@ export default function Saletype() {
     processData();
   }, [selectedSaleType]);
 
+  const options = saleTypes.map((saleType) => {
+    return {
+      value: obj[saleType] as string,
+      label: saleType,
+    };
+  });
 
+  const handleSelect = (e: any) => {
+    setSelectedSaleType(e.value as string);
+    setIsLoading(true);
+  };
 
   return (
-    <section className="w-full">
-       {
-        op1 && (
-          <div>
-            <Button value='1' className="w-full mt-3" variant={selectedSaleType == '1' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-            New Sale
-            </Button>
-          </div>
-        )
+    <WindowedSelect
+      placeholder="Select Sale Type"
+      options={options}
+      value={
+        selectedSaleType
+          ? { value: selectedSaleType, label: obj[selectedSaleType] }
+          : null
       }
-      {
-        op2 && (
-          <div>
-            <Button value='2' className="w-full mt-3" variant={selectedSaleType == '2' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-             Sub Sale
-            </Button>
-          </div>
-        )
-      }
-      {
-        op3 && (
-          <div>
-            <Button value='3' className="w-full mt-3" variant={selectedSaleType == '3' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-            Resale
-            </Button>
-          </div>
-        )
-      }
-    </section>
-  )
+      windowThreshold={50}
+      styles={customStyles}
+      menuPortalTarget={document.querySelector("body")}
+      onChange={(e: any) => handleSelect(e)}
+    />
+  );
 }

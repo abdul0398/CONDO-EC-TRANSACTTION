@@ -1,14 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { MyContext } from "@/context/context";
-import { districtArray, monthArray, projectArray, streetArray, tenureArray } from "@/data/constants";
+import {
+  districtArray,
+  monthArray,
+  projectArray,
+  streetArray,
+  tenureArray,
+} from "@/data/constants";
 import { useContext, useEffect, useState } from "react";
 import { ResponseBody, Transaction } from "@/types/data";
 import data from "@/data/transactions.json";
+import WindowedSelect from "react-windowed-select";
+import { customStyles } from "@/styles/select";
 
 export default function Areas() {
   const transactions = data as Transaction[];
 
-  const { 
+  const {
     areas,
     setMonths,
     setprojects,
@@ -21,11 +29,11 @@ export default function Areas() {
     setMarketSegments,
     setPrices,
     selectedArea,
-    selectedDistrictNames,
-    selectedMonths,
-    selectedprojects,
-    selectedStreetNames,
-    selectedApartmentTypes,
+    selectedDistrictName,
+    selectedMonth,
+    selectedproject,
+    selectedStreetName,
+    selectedApartmentType,
     selectedMarketSegment,
     selectedPrice,
     selectedSaleType,
@@ -35,43 +43,9 @@ export default function Areas() {
     setIsLoading,
   } = useContext(MyContext);
   const [isReady, setIsReady] = useState(false);
-
-
-  let op1 = false;
-  let op2 = false;
-  let op3 = false;
-  let op4 = false;
-
-  if (areas.length === 0) {
-    op1 = true;
-    op2 = true;
-    op3 = true;
-    op4 = true;
-
-  }
-  areas.forEach((area) => {
-    const intArea = parseInt(area)
-    if (intArea < 1000) {
-      op1 = true;
-    } else if (intArea > 1000 && intArea <= 5000) {
-      op2 = true;
-    } else if (intArea > 5000 && intArea <= 10000) {
-      op3 = true;
-    } else if (intArea > 10000) {
-      op4 = true;
-    }
-  })
-
   const handleclick = (e: any) => {
-    if (selectedArea === e.target.value) {
-      setSelectedArea('');
-      return;
-    }
-    setSelectedArea(e.target.value);
-  }
-
-
-
+    setSelectedArea(e.value);
+  };
 
   useEffect(() => {
     // Set isReady to true after the initial render
@@ -84,28 +58,28 @@ export default function Areas() {
     async function processData() {
       const preData = {
         selectedArea,
-        selectedDistrictNames,
-        selectedMonths,
-        selectedprojects,
-        selectedStreetNames,
-        selectedApartmentTypes,
+        selectedDistrictName,
+        selectedMonth,
+        selectedproject,
+        selectedStreetName,
+        selectedApartmentType,
         selectedMarketSegment,
         selectedPrice,
         selectedSaleType,
         selectedTenure,
-      }
+      };
 
       if (
-        selectedDistrictNames.length === 0 &&
-        selectedStreetNames.length === 0 &&
-        selectedprojects.length === 0 &&
+        selectedDistrictName === "" &&
+        selectedStreetName === "" &&
+        selectedproject === "" &&
         selectedArea === "" &&
-        selectedMonths.length === 0 &&
+        selectedMonth === "" &&
         selectedPrice === "" &&
         selectedSaleType === "" &&
         selectedMarketSegment === "" &&
-        selectedApartmentTypes === "" &&
-        selectedTenure.length === 0
+        selectedApartmentType === "" &&
+        selectedTenure === ""
       ) {
         setprojects(projectArray);
         setStreets(streetArray);
@@ -117,7 +91,7 @@ export default function Areas() {
         setSaleTypes([]);
         setApartmentTypes([]);
         setMarketSegments([]);
-        setTransactions(transactions)
+        setTransactions(transactions);
 
         setIsLoading(false);
       } else {
@@ -144,47 +118,23 @@ export default function Areas() {
     processData();
   }, [selectedArea]);
 
-
-
+  const options = areas.map((area) => {
+    return { value: area, label: area };
+  });
 
   return (
-    <section className="w-full">
-      {
-        op1 && (
-          <div>
-            <Button value='<1000' className="w-full mt-3 text-xs" variant={selectedArea == '<1000' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-              &lt; 1000 sqft
-            </Button>
-          </div>
-        )
-      }
-      {
-        op2 && (
-          <div>
-            <Button value='1000-5000' className="w-full mt-3 text-xs" variant={selectedArea == '1000-5000' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-              1000 - 5000 sqft
-            </Button>
-          </div>
-        )
-      }
-      {
-        op3 && (
-          <div>
-            <Button value='5000-10000' className="w-full mt-3 text-xs" variant={selectedArea == '5000-10000' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-              5000 - 10000 sqft
-            </Button>
-          </div>
-        )
-      }
-      {
-        op4 && (
-          <div>
-            <Button value='>10000' className="w-full mt-3 text-xs" variant={selectedArea == '>10000' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-              &gt; 10000 sqft
-            </Button>
-          </div>
-        )
-      }
-    </section>
-  )
+    <div className="w-45 ms-3">
+      <WindowedSelect
+        placeholder="Select Area"
+        options={options}
+        value={
+          selectedArea ? { value: selectedArea, label: selectedArea } : null
+        }
+        windowThreshold={50}
+        styles={customStyles}
+        menuPortalTarget={document.querySelector("body")}
+        onChange={(e: any) => handleclick(e)}
+      />
+    </div>
+  );
 }

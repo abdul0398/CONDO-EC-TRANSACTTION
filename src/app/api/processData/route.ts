@@ -10,11 +10,11 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     const {
-      selectedDistrictNames,
-      selectedStreetNames,
-      selectedprojects,
-      selectedMonths,
-      selectedApartmentTypes,
+      selectedDistrictName,
+      selectedStreetName,
+      selectedproject,
+      selectedMonth,
+      selectedApartmentType,
       selectedArea,
       selectedMarketSegment,
       selectedPrice,
@@ -64,40 +64,40 @@ export async function POST(req: NextRequest) {
 
       
 
-      if (selectedDistrictNames.length > 0) {
-        if (selectedDistrictNames.includes(district)) {
+      if (selectedDistrictName) {
+        if (selectedDistrictName == district) {
           isDistrictPresent = true;
         }
       } else {
         isDistrictPresent = true;
       }
 
-      if (selectedStreetNames.length > 0) {
-        if (selectedStreetNames.includes(street)) {
+      if (selectedStreetName) {
+        if (selectedStreetName == street) {
           isStreetPresent = true;
         }
       } else {
         isStreetPresent = true;
       }
 
-      if (selectedprojects.length > 0) {
-        if (selectedprojects.includes(project)) {
+      if (selectedproject) {
+        if (selectedproject == project) {
           isProjectPresent = true;
         }
       } else {
         isProjectPresent = true;
       }
 
-      if (selectedApartmentTypes) {
-        if (selectedApartmentTypes == apartmentType) {
+      if (selectedApartmentType) {
+        if (selectedApartmentType == apartmentType) {
           isApartmenttype = true;
         }
       } else {
         isApartmenttype = true;
       }
 
-      if (selectedMonths.length > 0) {
-        if (selectedMonths.includes(month)) {
+      if (selectedMonth) {
+        if (selectedMonth == month) {
           isMonthPresent = true;
         }
       } else {
@@ -112,8 +112,8 @@ export async function POST(req: NextRequest) {
         isSaleTypePresent = true;
       }
 
-      if (selectedTenure.length > 0) {
-        if (selectedTenure.includes(tenure)) {
+      if (selectedTenure) {
+        if (selectedTenure == tenure) {
           isTenurePresent = true;
         }
       } else {

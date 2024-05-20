@@ -4884,13 +4884,7 @@ const monthArray = [
 const propertyTypeArray = [
   "Apartment",
   "Condominium",
-  "Detached",
   "Executive Condominium",
-  "Semi-detached",
-  "Strata Detached",
-  "Strata Semi-detached",
-  "Strata Terrace",
-  "Terrace",
 ];
 const maxPrice = "999999";
 const minPrice = "1000";

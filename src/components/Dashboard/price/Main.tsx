@@ -1,9 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { MyContext } from "@/context/context";
-import { districtArray, monthArray, projectArray, streetArray, tenureArray } from "@/data/constants";
+import {
+  districtArray,
+  monthArray,
+  projectArray,
+  streetArray,
+  tenureArray,
+} from "@/data/constants";
 import { useContext, useEffect, useState } from "react";
 import { ResponseBody, Transaction } from "@/types/data";
 import data from "@/data/transactions.json";
+import WindowedSelect from "react-windowed-select";
+import { customStyles } from "@/styles/select";
 
 export default function Price() {
   const transactions = data as Transaction[];
@@ -19,53 +27,24 @@ export default function Price() {
     setApartmentTypes,
     setMarketSegments,
     selectedArea,
-    selectedDistrictNames,
-    selectedMonths,
-    selectedprojects,
-    selectedStreetNames,
-    selectedApartmentTypes,
+    selectedDistrictName,
+    selectedMonth,
+    selectedproject,
+    selectedStreetName,
+    selectedApartmentType,
     selectedMarketSegment,
     selectedPrice,
     selectedSaleType,
     selectedTenure,
     setTransactions,
     setSelectedPrice,
-    setIsLoading
+    setIsLoading,
   } = useContext(MyContext);
   const [isReady, setIsReady] = useState(false);
 
-  let op1 = false;
-  let op2 = false;
-  let op3 = false;
-  let op4 = false;
-
-  if (prices.length === 0) {
-    op1 = true;
-    op2 = true;
-    op3 = true;
-    op4 = true;
-
-  }
-  prices.forEach((price) => {
-    if (parseInt(price) < 5000000) {
-      op1 = true;
-    } else if (parseInt(price) >= 5000000 && parseInt(price) < 20000000) {
-      op2 = true;
-    } else if (parseInt(price) >= 20000000 && parseInt(price) < 40000000) {
-      op3 = true;
-    }else if (parseInt(price) >= 40000000) {
-      op4 = true;
-    }
-  })
-
   const handleclick = (e: any) => {
-    if (selectedPrice === e.target.value) {
-      setSelectedPrice('');
-      return;
-    }
-    setSelectedPrice(e.target.value);
-  }
-
+    setSelectedPrice(e.value as string);
+  };
 
   useEffect(() => {
     // Set isReady to true after the initial render
@@ -78,28 +57,28 @@ export default function Price() {
     async function processData() {
       const preData = {
         selectedArea,
-        selectedDistrictNames,
-        selectedMonths,
-        selectedprojects,
-        selectedStreetNames,
-        selectedApartmentTypes,
+        selectedDistrictName,
+        selectedMonth,
+        selectedproject,
+        selectedStreetName,
+        selectedApartmentType,
         selectedMarketSegment,
         selectedPrice,
         selectedSaleType,
         selectedTenure,
-      }
+      };
 
       if (
-        selectedDistrictNames.length === 0 &&
-        selectedStreetNames.length === 0 &&
-        selectedprojects.length === 0 &&
+        selectedDistrictName == "" &&
+        selectedStreetName === "" &&
+        selectedproject === "" &&
         selectedArea === "" &&
-        selectedMonths.length === 0 &&
+        selectedMonth === "" &&
         selectedPrice === "" &&
         selectedSaleType === "" &&
         selectedMarketSegment === "" &&
-        selectedApartmentTypes === "" &&
-        selectedTenure.length === 0
+        selectedApartmentType === "" &&
+        selectedTenure === ""
       ) {
         setprojects(projectArray);
         setStreets(streetArray);
@@ -111,7 +90,7 @@ export default function Price() {
         setSaleTypes([]);
         setAreas([]);
         setApartmentTypes([]);
-        setTransactions(transactions)
+        setTransactions(transactions);
 
         setIsLoading(false);
       } else {
@@ -138,48 +117,21 @@ export default function Price() {
     processData();
   }, [selectedPrice]);
 
-
-
+  const options = prices.map((prices) => {
+    return { value: prices, label: prices };
+  });
 
   return (
-    <section className="w-full">
-      {
-        op1 && (
-          <div>
-            <Button value='<5m' className="w-full mt-3" variant={selectedPrice == '<5m' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-            &lt; 5m$
-            </Button>
-          </div>
-        )
+    <WindowedSelect
+      placeholder="Select Price"
+      options={options}
+      value={
+        selectedPrice ? { value: selectedPrice, label: selectedPrice } : null
       }
-       {
-        op2 && (
-          <div>
-            <Button value='5m-20m' className="w-full mt-3" variant={selectedPrice == '5m-20m' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-            5m$ - 20m$
-            </Button>
-          </div>
-        )
-      }
-       {
-        op3 && (
-          <div>
-            <Button value='20m-40m' className="w-full mt-3" variant={selectedPrice == '20m-40m' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-            20m$ - 40m$
-            </Button>
-          </div>
-        )
-      }
-       {
-        op4 && (
-          <div>
-            <Button value='>40m' className="w-full mt-3" variant={selectedPrice == '>40m' ? 'default' : "outline"} onClick={(e) => handleclick(e)}>
-            &gt; 40m$
-            </Button>
-          </div>
-        )
-      }
-     
-    </section>
-  )
+      windowThreshold={50}
+      styles={customStyles}
+      menuPortalTarget={document.querySelector("body")}
+      onChange={(e: any) => handleclick(e)}
+    />
+  );
 }
