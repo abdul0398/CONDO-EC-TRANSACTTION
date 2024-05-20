@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useContext, useEffect, use } from "react";
 import { MyContext } from "@/context/context";
 import data from "@/data/transactions.json";

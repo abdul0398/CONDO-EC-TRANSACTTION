@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useMemo } from "react";
-import Dashboard from "../components/Dashboard/Main";
+import dynamic from "next/dynamic";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { MyContext } from "@/context/context";
 import {
@@ -14,6 +14,9 @@ import {
 import transaction from "@/data/transactions.json";
 import { Transaction } from "@/types/data";
 import { BsBuildings } from "react-icons/bs";
+const Dashboard = dynamic(() => import("../components/Dashboard/Main"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
