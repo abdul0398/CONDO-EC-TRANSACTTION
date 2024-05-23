@@ -13,7 +13,7 @@ import {
 } from "@/data/constants";
 import transaction from "@/data/transactions.json";
 import { Transaction } from "@/types/data";
-import { BsBuildings } from "react-icons/bs";
+import Image from "next/image";
 const Dashboard = dynamic(() => import("../components/Dashboard/Main"), {
   ssr: false,
 });
@@ -144,12 +144,18 @@ export default function Home() {
       {isLoading && (
         <div className="bg-black pointer-events-none fixed z-50 w-full h-full flex justify-center items-center opacity-80">
           <div role="status">
-            <BsBuildings size={50} color="white" />
-            <p className="text-white">Loading...</p>
+            <Image
+              src="/logo.png"
+              alt="loading"
+              width={220}
+              height={180}
+              className="mx-auto"
+            />
+            <p className="text-white text-center">Loading...</p>
           </div>
         </div>
       )}
-      <main className="h-full w-full pt-8">
+      <main className="h-full w-full">
         <section className="w-full h-full">
           <MyContext.Provider value={contextValue}>
             <Dashboard />

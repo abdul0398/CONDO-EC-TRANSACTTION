@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useContext, useEffect, use } from "react";
-import { FixedSizeList as List } from "react-window";
 import { MyContext } from "@/context/context";
 import {
   streetArray,

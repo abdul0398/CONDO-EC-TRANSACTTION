@@ -21,6 +21,9 @@ import SecondGraph from "./graphs/second/Main";
 import ThirdGraph from "./graphs/third/Main";
 import UnitSoldInMonth from "./graphs/unitSoldInMonth/Main";
 import UnitSoldInProject from "./graphs/unitSoldInproject/Main";
+import { IoMenu } from "react-icons/io5";
+
+import { useMediaQuery } from "react-responsive";
 
 import { FaStreetView } from "react-icons/fa";
 import {
@@ -57,6 +60,8 @@ export default function Dashboard() {
   } = useContext(MyContext);
 
   const [selectedView, setSelectedView] = useState<string>("table");
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
+  const [isOpen, setIsOpen] = useState<boolean>(!isMobile);
 
   const handleReset = (e: any) => {
     e.preventDefault();
@@ -90,6 +95,10 @@ export default function Dashboard() {
     slider.scrollLeft -= 400;
   };
 
+  const sideBarHandler = () => {
+    setIsOpen(!isOpen);
+  };
+
   const viewProvider = () => {
     switch (selectedView) {
       case "piechart":
@@ -107,26 +116,34 @@ export default function Dashboard() {
 
   return (
     <div className="h-full w-full flex justify-center items-center">
-      <div className="w-[90%] flex h-[90%]">
+      <div className="w-[98%] flex h-[98%] rounded-l-[40px]">
         <Sidebar
           selectedView={selectedView}
           setSelectedView={setSelectedView}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          isMobile={isMobile}
         />
         <main
           id="main-container"
-          className="sm:w-5/6 w-full rounded-r-3xl ms-auto border overflow-auto lg:p-2 shadow-md"
+          className="w-full p-1 lg:rounded-l-none rounded-l-3xl rounded-r-3xl ms-auto border overflow-auto lg:p-2 shadow-md"
         >
-          <div className="relative h-14">
+          <div className="flex justify-end h-14 mt-2">
             <Button
               variant="default"
-              className="me-2 bg-[#0e4884] hover:bg-[#0e4884] absolute right-1 top-5"
+              className="me-2 bg-[#0c3f74] font-bold hover:bg-[#0c3f74]"
               onClick={handleReset}
             >
               Reset
             </Button>
+            {isMobile && (
+              <div className="opacity-50">
+                <IoMenu size={40} onClick={sideBarHandler} />
+              </div>
+            )}
           </div>
           <section>
-            <div className="filter-slider h-48 mt-10 flex gap-8 overflow-x-scroll scroll-smooth mx-auto whitespace-nowrap w-[90%] p-2 no-scrollbar rounded-md">
+            <div className="filter-slider h-[900px] pt-2 lg:h-48 lg:mt-5 grid grid-cols-2 lg:flex gap-3 lg:gap-8 overflow-x-scroll lg:overflow-x-hidden scroll-smooth mx-auto whitespace-nowrap lg:whitespace-normal lg:grid-cols-4 lg:w-[90%] md:w-[90%] w-full lg:p-2 no-scrollbar rounded-md">
               <FilterBox
                 select={<Districts />}
                 name="District"
@@ -188,7 +205,7 @@ export default function Dashboard() {
                 icon={<MdCalendarMonth className="text-2xl text-white" />}
               />
             </div>
-            <div className="text-center flex justify-center gap-2 mt-3">
+            <div className="text-center  justify-center gap-2 mt-3 lg:flex md:flex hidden">
               <div className="rounded-full h-8 w-8 flex justify-center items-center bg-[#0e4884]">
                 <MdChevronLeft
                   onClick={() => {
@@ -208,7 +225,7 @@ export default function Dashboard() {
             </div>
           </section>
 
-          <section className="w-[90%] overflow-x-auto overflow-y-hidden mx-auto border h-[700px] pb-3 mt-10 rounded-xl">
+          <section className="lg:w-[90%] md:w-[90%] w-[100%] overflow-x-auto overflow-y-hidden mx-auto border h-[700px] pb-3 mt-10 rounded-xl">
             <div className="min-w-[900px] w-full">
               <div className="bg-[#0e4884] w-full h-14 rounded-t-xl flex items-center ps-3">
                 <Button
@@ -261,7 +278,7 @@ export default function Dashboard() {
             </div>
           </section>
 
-          <section className="p-7 relative  bg-[url('/building-banner.jpeg')]  bg-cover bg-center before:bg-blue-400 bg-no-repeat w-[90%] mx-auto h-52 border rounded-xl mt-10">
+          <section className="p-7 relative lg:w-[90%] md:w-[90%] w-[100%]  bg-[url('/building-banner.jpeg')]  bg-cover bg-center before:bg-blue-400 bg-no-repeat mx-auto h-52 border rounded-xl mt-10">
             <div className="lg:w-2/3 md:2/3 w-full">
               <h2 className="lg:text-3xl md:text-2xl text-xl text-white z-20 opacity-100">
                 Discover your dream condo rental and make it your home
