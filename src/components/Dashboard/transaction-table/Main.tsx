@@ -13,11 +13,16 @@ const List = dynamic(
 
 export default function Transactions() {
   const { transactions } = useContext(MyContext);
-  const [listings, setListings] = useState<any[]>(transactions.slice(0, 25000));
+  const [listings, setListings] = useState<any[]>(
+    transactions.slice(0, 25000).sort((a: any, b: any) => a.project - b.project)
+  );
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: string;
-  } | null>(null);
+  } | null>({
+    key: "project",
+    direction: "ascending",
+  });
 
   useEffect(() => {
     setListings(transactions.slice(0, 25000));
@@ -228,7 +233,7 @@ export default function Transactions() {
       <div className="overflow-hidden">
         <List
           height={500}
-          itemCount={transactions.length}
+          itemCount={listings.length}
           itemSize={50}
           width={"100%"}
         >
