@@ -13,19 +13,26 @@ const List = dynamic(
 
 export default function Transactions() {
   const { transactions } = useContext(MyContext);
-  const [listings, setListings] = useState<any[]>(
-    transactions.slice(0, 25000).sort((a: any, b: any) => a.project - b.project)
-  );
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: string;
-  } | null>({
+
+  // Trim the transactions to 25,000 and sort them by project initially
+  const trimmedTransactions = transactions.slice(0, 25000);
+  const sortedTransactions = [...trimmedTransactions].sort((a, b) => {
+    return a.project.localeCompare(b.project);
+  });
+
+  // State for listings and sort configuration
+  const [listings, setListings] = useState(sortedTransactions);
+  const [sortConfig, setSortConfig] = useState({
     key: "project",
     direction: "ascending",
   });
 
   useEffect(() => {
-    setListings(transactions.slice(0, 25000));
+    const trimmedTransactions = transactions.slice(0, 25000);
+    const sortedTransactions = [...trimmedTransactions].sort((a, b) => {
+      return a.project.localeCompare(b.project);
+    });
+    setListings(sortedTransactions);
   }, [transactions]);
 
   const Row: React.FC<ListChildComponentProps> = ({ index, style }) => {
