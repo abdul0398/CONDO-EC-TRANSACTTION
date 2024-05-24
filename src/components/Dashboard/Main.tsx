@@ -126,7 +126,7 @@ export default function Dashboard() {
         />
         <main
           id="main-container"
-          className="w-full p-1 lg:rounded-l-none rounded-l-3xl rounded-r-3xl ms-auto border overflow-auto lg:p-2 shadow-md"
+          className="w-full p-1 lg:rounded-l-none rounded-l-3xl scroll rounded-r-3xl ms-auto border  overflow-y-scroll no-scrollbar lg:p-2 shadow-md"
         >
           <div className="flex justify-end h-14 mt-2">
             <Button
