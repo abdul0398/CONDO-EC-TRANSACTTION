@@ -1,22 +1,14 @@
 const fs = require("fs").promises;
 const data = require("./src/data/transactions.json");
-async function saveData() {
-  const array = data;
-  const allowedPropertyTypes = ['Condominium', 'Executive Condominium', 'Apartment'];
-  
- console.log(array.length); 
-  const result = array.filter((item) => {
-    return allowedPropertyTypes.includes(item.propertyType);
- 
-  })
-
-  console.log(result.length);
-
-  await fs.writeFile("transactions.json", JSON.stringify(result, null, 2));
+async function sortData() {
+  // sort based on project name
+  data.sort((a, b) => a.project.localeCompare(b.project));
+  // create a new file with the sorted data
+  await fs.writeFile("./src/data/sortedTransactions.json", JSON.stringify(data));
 }
 
 // Call the function and process the result as needed
-saveData()
+sortData()
 
 // {
 //     street: "ZEHNDER ROAD",
