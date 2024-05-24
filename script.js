@@ -3,8 +3,31 @@ const data = require("./src/data/transactions.json");
 async function sortData() {
   // sort based on project name
   data.sort((a, b) => a.project.localeCompare(b.project));
-  // create a new file with the sorted data
-  await fs.writeFile("./src/data/sortedTransactions.json", JSON.stringify(data));
+  // create a 4 new files with the sorted data equally divided
+  const dataLength = data.length;
+  const quarter = Math.floor(dataLength / 4);
+  const firstQuarter = data.slice(0, quarter);
+  const secondQuarter = data.slice(quarter, quarter * 2);
+  const thirdQuarter = data.slice(quarter * 2, quarter * 3);
+  const fourthQuarter = data.slice(quarter * 3, dataLength);
+  await fs.writeFile(
+    "./src/data/transactions1.json",
+    JSON.stringify(firstQuarter)
+  );
+  await fs.writeFile(
+    "./src/data/transactions2.json",
+    JSON.stringify(secondQuarter)
+  );
+  await fs.writeFile(
+    "./src/data/transactions3.json",
+    JSON.stringify(thirdQuarter)
+  );
+  await fs.writeFile(
+    "./src/data/transactions4.json",
+    JSON.stringify(fourthQuarter)
+  );
+
+  
 }
 
 // Call the function and process the result as needed
