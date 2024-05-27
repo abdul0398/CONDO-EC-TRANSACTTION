@@ -152,7 +152,7 @@ export default function Transactions() {
         <div className="px-1 py-4  text-xs">
           <div className="flex">
             Project
-            <span className="flex items-center ms-2">
+            <span className="flex items-center ms-1">
               <FaSort
                 className="hover:cursor-pointer"
                 onClick={() => handleSort("project")}
@@ -161,10 +161,10 @@ export default function Transactions() {
           </div>
         </div>
         <div className="px-1 py-4 text-xs">Tenure</div>
-        <div className="px-1 py-4 text-xs">
+        <div className="py-4 text-xs">
           <div className="flex">
             Price($)
-            <span className="flex items-center ms-2">
+            <span className="flex items-center ms-1">
               <FaSort
                 className="hover:cursor-pointer"
                 onClick={() => handleSort("project")}
@@ -175,7 +175,7 @@ export default function Transactions() {
         <div className="px-1 py-4 text-xs">
           <div className="flex">
             PSF($)
-            <span className="flex items-center ms-2">
+            <span className="flex items-center ms-1">
               <FaSort
                 className="hover:cursor-pointer"
                 onClick={() => handleSort("psf")}
@@ -189,7 +189,7 @@ export default function Transactions() {
         >
           <div className="flex">
             Area
-            <span className="flex items-center ms-2">
+            <span className="flex items-center ms-1">
               <FaSort
                 className="hover:cursor-pointer"
                 onClick={() => handleSort("area")}
@@ -203,7 +203,7 @@ export default function Transactions() {
         >
           <div className="flex">
             Month
-            <span className="flex items-center ms-2">
+            <span className="flex items-center ms-1">
               <FaSort
                 className="hover:cursor-pointer"
                 onClick={() => handleSort("month")}
@@ -216,7 +216,7 @@ export default function Transactions() {
         <div className="px-1 py-4 text-xs">
           <div className="flex">
             Street
-            <span className="flex items-center ms-2">
+            <span className="flex items-center ms-1">
               <FaSort
                 className="hover:cursor-pointer"
                 onClick={() => handleSort("street")}
@@ -227,7 +227,7 @@ export default function Transactions() {
         <div className="px-1 py-4 text-xs">
           <div className="flex">
             District
-            <span className="flex items-center ms-2">
+            <span className="flex items-center ms-1">
               <FaSort
                 className="hover:cursor-pointer"
                 onClick={() => handleSort("district")}
