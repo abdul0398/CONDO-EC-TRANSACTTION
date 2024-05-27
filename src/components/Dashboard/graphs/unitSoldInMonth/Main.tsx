@@ -45,7 +45,7 @@ export default function UnitSoldInMonth() {
 
   return (
     <div className="w-full border my-5">
-      <Bar data={dataset} width={2000} height={900} />
+      <Bar data={dataset} width={2000} height={800} />
     </div>
   );
 }

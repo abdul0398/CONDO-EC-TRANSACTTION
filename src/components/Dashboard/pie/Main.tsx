@@ -6,18 +6,27 @@ import { pieData } from "@/data/pieData";
 import { MyContext } from "@/context/context";
 
 export default function PieCharts() {
-  const { projects, selectedproject } = useContext(MyContext);
+  const { projects, selectedproject, transactions } = useContext(MyContext);
 
-  const filterPieDataKey =
+  let filteredProjects = projects;
+  if (transactions.length < 25000) {
+    filteredProjects = transactions.map((transaction) => {
+      return transaction.project;
+    });
+
+    filteredProjects = filteredProjects.filter((project, index, self) => {
+      return self.indexOf(project) === index;
+    });
+  }
+
+  filteredProjects =
     selectedproject === ""
-      ? Object.keys(pieData).filter((key) => {
-          return projects;
-        })
-      : Object.keys(pieData).filter((key) => {
+      ? filteredProjects
+      : filteredProjects.filter((key) => {
           return selectedproject === key;
         });
 
-  const unitsArray = filterPieDataKey.map((key: any) => {
+  const unitsArray = filteredProjects.map((key: any) => {
     return {
       units: pieData[key].units,
       project: key,
