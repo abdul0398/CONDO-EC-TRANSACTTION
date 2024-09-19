@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { MyContext } from "@/context/context";
 import {
@@ -19,6 +20,10 @@ const Dashboard = dynamic(() => import("../components/Dashboard/Main"), {
 });
 
 export default function Home() {
+
+   const searchParams = useSearchParams();
+    const street = searchParams.get("street");
+    const validStreet = street && streetArray.includes(street) ? street : "";
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [districts, setdistricts] = useState<string[]>(districtArray);
   const [streets, setStreets] = useState<string[]>(streetArray);
@@ -53,7 +58,7 @@ export default function Home() {
     "Resale",
   ]);
   const [selectedDistrictName, setSelectedDistrictsName] = useState<string>("");
-  const [selectedStreetName, setSelectedStreetName] = useState<string>("");
+  const [selectedStreetName, setSelectedStreetName] = useState<string>(validStreet);
   const [selectedproject, setSelectedproject] = useState<string>("");
   const [selectedSaleType, setSelectedSaleType] = useState<string>("");
   const [selectedMonth, setSelectedMonth] = useState<string>("");
